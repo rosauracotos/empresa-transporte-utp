@@ -66,16 +66,15 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-xxl-12 col-md-6">
-              <div class="card info-card revenue-card">
-
+            <div class="col-xxl-12 col-md-12 section dashboard">
+              <div class="card info-card revenue-card border border-primary-subtle rounded" style="margin-bottom: 0px; margin-left: 0px">
                 <div class="card-body">
                   <h5 class="card-title">Filtros de Búsqueda</h5>
                     <div class="row mb-3">
                       <div class="col-xxl-1">
                         <label for="inputText" class="col-form-label">Area</label>
                       </div>
-                      <div class="col-xxl-3">
+                      <div class="col-xxl-5">
                         <select class="form-select" aria-label="Default select example">
                           <option selected>-- Seleccione --</option>
                           <option value="1">SubGerencia de Recursos Humanos</option>
@@ -93,15 +92,16 @@
                     </div>
                     <div class="row mb-0">
                       <div class="col-xxl-1">
-                        <label for="inputText" class="col-form-label">T.DOC</label>
+                        <label for="inputText" class="col-form-label">Tipo Doc.</label>
                       </div>
                       <div class="col-xxl-3">
                         <div class="input-group mb-3">
-                          <select class="form-select" aria-label="Default select example">
+                          <select class="form-select" aria-label="Default select example" style="margin-right: 15px;border-radius: 5px">
                             <option selected>-- Seleccione --</option>
                             <option value="1">DNI</option>
+							<option value="2">Carnet Extranjeria</option>
                           </select>
-						  <input type="text" class="form-control">
+						  <input type="text" class="form-control" style="border-radius: 5px">
                         </div>
                       </div>
                       <div class="col-xxl-1">
@@ -145,15 +145,18 @@
                         <input type="text" class="form-control">
                       </div>
                     </div>
+                    <div class="col-xxl-4" style="margin-top: 20px">
+                      <button class="btn btn-outline-primary">Buscar</button>
+                      <button class="btn btn-outline-success">Nuevo</button>
+                    </div>
                 </div>
               </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12" style="margin-top: 5px">
               <div class="card recent-sales overflow-auto">
-                <div class="card-body">
+                <div class="card-body border border-primary-subtle rounded">
                   <h5 class="card-title">Relación de Empleados</h5>
-
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
@@ -171,15 +174,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      
                     </tbody>
                   </table>
-
                 </div>
-
               </div>
             </div>
-
           </div>
         </div><!-- End Left side columns -->
 
