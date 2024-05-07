@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UbigeoProvRepository extends JpaRepository<UbigeoProv, Integer> {
+public interface UbigeoProvRepository extends JpaRepository<UbigeoProv, Long> {
 
     List<UbigeoProv> findUbigeoProvtByActivoTrue();
 

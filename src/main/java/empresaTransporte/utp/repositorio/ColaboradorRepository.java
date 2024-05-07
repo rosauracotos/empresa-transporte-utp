@@ -7,10 +7,12 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ColaboradorRepository extends JpaRepository<Colaborador, Integer> {
+public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> {
 
     @Query("SELECT COUNT(c) FROM Colaborador c")
     long contarColaboradores();
+
+
 
 
 }

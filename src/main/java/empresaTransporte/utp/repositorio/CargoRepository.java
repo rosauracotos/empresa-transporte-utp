@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CargoRepository extends JpaRepository<Cargo, Integer> {
+public interface CargoRepository extends JpaRepository<Cargo, Long> {
 
     List<Cargo> findCargoByActivoTrue();
 

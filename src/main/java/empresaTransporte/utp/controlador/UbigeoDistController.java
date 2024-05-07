@@ -1,7 +1,7 @@
 package empresaTransporte.utp.controlador;
 
 import empresaTransporte.utp.entidad.ubigeo.UbigeoDist;
-import empresaTransporte.utp.servicio.UbigeoDistService;
+import empresaTransporte.utp.servicio.impl.UbigeoDistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

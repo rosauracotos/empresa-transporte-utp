@@ -2,7 +2,7 @@ package empresaTransporte.utp.controlador;
 
 
 import empresaTransporte.utp.entidad.master.Cargo;
-import empresaTransporte.utp.servicio.CargoService;
+import empresaTransporte.utp.servicio.impl.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

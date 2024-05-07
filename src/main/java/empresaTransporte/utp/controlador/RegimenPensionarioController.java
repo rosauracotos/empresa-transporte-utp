@@ -2,7 +2,7 @@ package empresaTransporte.utp.controlador;
 
 
 import empresaTransporte.utp.entidad.master.RegimenPensionario;
-import empresaTransporte.utp.servicio.RegimenPensionarioService;
+import empresaTransporte.utp.servicio.impl.RegimenPensionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

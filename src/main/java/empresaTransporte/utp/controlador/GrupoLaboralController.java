@@ -1,7 +1,7 @@
 package empresaTransporte.utp.controlador;
 
 import empresaTransporte.utp.entidad.master.GrupoLaboral;
-import empresaTransporte.utp.servicio.GrupoLaboralService;
+import empresaTransporte.utp.servicio.impl.GrupoLaboralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

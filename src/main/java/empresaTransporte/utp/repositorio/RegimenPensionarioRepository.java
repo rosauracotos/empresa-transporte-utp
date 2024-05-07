@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RegimenPensionarioRepository extends JpaRepository<RegimenPensionario, Integer> {
+public interface RegimenPensionarioRepository extends JpaRepository<RegimenPensionario, Long> {
 
     List<RegimenPensionario> findRegimenPensionarioByActivoTrue();
 

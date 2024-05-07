@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AreaClasificacionRepository extends JpaRepository<AreaClasificacion, Integer> {
+public interface AreaClasificacionRepository extends JpaRepository<AreaClasificacion, Long> {
 
     List<AreaClasificacion> findAreaClasificacionByActivoTrue();
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AreaDenRepository extends JpaRepository<AreaDen, Integer> {
+public interface AreaDenRepository extends JpaRepository<AreaDen, Long> {
 
     List<AreaDen> findAreaDenByActivoTrue();
 

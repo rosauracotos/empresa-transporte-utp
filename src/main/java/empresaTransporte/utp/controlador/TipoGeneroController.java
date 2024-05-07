@@ -1,7 +1,7 @@
 package empresaTransporte.utp.controlador;
 
 import empresaTransporte.utp.entidad.master.TipoGenero;
-import empresaTransporte.utp.servicio.TipoGeneroService;
+import empresaTransporte.utp.servicio.impl.TipoGeneroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

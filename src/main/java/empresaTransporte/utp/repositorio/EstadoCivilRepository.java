@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface EstadoCivilRepository extends JpaRepository<EstadoCivil, Integer> {
+public interface EstadoCivilRepository extends JpaRepository<EstadoCivil, Long> {
 
     List<EstadoCivil> findEstadoCivilByActivoTrue();
 

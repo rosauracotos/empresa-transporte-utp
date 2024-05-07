@@ -2,7 +2,7 @@ package empresaTransporte.utp.controlador;
 
 
 import empresaTransporte.utp.entidad.master.TipoDoc;
-import empresaTransporte.utp.servicio.TipoDocService;
+import empresaTransporte.utp.servicio.impl.TipoDocService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

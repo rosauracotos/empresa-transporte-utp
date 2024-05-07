@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SedeRepository extends JpaRepository<Sede, Integer> {
+public interface SedeRepository extends JpaRepository<Sede, Long> {
 
     List<Sede> findSedeByActivoTrue();
 

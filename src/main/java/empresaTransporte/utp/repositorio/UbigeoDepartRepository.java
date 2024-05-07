@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UbigeoDepartRepository extends JpaRepository<UbigeoDepart, Integer> {
+public interface UbigeoDepartRepository extends JpaRepository<UbigeoDepart, Long> {
 
     List<UbigeoDepart> findUbigeoDepartByActivoTrue();
 

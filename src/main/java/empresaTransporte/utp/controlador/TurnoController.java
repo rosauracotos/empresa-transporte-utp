@@ -2,7 +2,7 @@ package empresaTransporte.utp.controlador;
 
 
 import empresaTransporte.utp.entidad.master.Turno;
-import empresaTransporte.utp.servicio.TurnoService;
+import empresaTransporte.utp.servicio.impl.TurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

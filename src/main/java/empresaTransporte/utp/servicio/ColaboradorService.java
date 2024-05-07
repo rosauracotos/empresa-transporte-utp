@@ -9,10 +9,12 @@ public interface ColaboradorService {
 
     List<Colaborador> listarColaboradores();
 
-    public RespuestaControlador guardar (Colaborador colaborador);
+    RespuestaControlador guardar (Colaborador colaborador);
 
-    public RespuestaControlador actualizar (Colaborador colaborador);
+    RespuestaControlador actualizar (Colaborador colaborador);
 
-    public RespuestaControlador eliminar (Long id);
+    Colaborador findById(Long idColaborador);
+
+    RespuestaControlador eliminar (Long id);
 
 }

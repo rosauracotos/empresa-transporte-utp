@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TipoDocRepository extends JpaRepository<TipoDoc, Integer> {
+public interface TipoDocRepository extends JpaRepository<TipoDoc, Long> {
 
     List<TipoDoc> findTipoDocByActivoTrue();
 

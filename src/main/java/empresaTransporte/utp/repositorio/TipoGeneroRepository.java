@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TipoGeneroRepository extends JpaRepository<TipoGenero, Integer> {
+public interface TipoGeneroRepository extends JpaRepository<TipoGenero, Long> {
 
     List<TipoGenero> findTipoGeneroByActivoTrue();
 
