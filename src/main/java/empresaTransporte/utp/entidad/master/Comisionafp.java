@@ -37,5 +37,6 @@ public class Comisionafp implements Serializable {
 
     @Column(name = "caf_activo")
     private boolean activo;
+
 }
 

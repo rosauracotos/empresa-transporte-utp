@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, Long> {
+
+    PerfilUsuario findByUsuarioIdAndActivo(Long usuarioId, Boolean activo);
+
 }

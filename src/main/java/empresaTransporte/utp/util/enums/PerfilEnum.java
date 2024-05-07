@@ -12,7 +12,7 @@ public enum PerfilEnum {
     GERENTE("Gerente", 2L, Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9l, 10L, 11L,12L)),
     SUB_GERENTE("Sub Gerente", 3L, Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9l, 10L, 11L,12L)),
     JEFE("Jefe", 4L, Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9l, 10L, 11L,12L)),
-    PERSONAL("Personal", 5L, Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9l, 10L, 11L,12L));
+    PERSONAL("Personal", 5L, Arrays.asList(2L, 9L));
 
     private String nombre;
     private Long id;

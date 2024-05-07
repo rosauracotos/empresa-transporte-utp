@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioClaveRepository extends JpaRepository<UsuarioClave, Long> {
+
+    UsuarioClave findByUsuarioIdAndActivo(Long usuarioId, Boolean activo);
+
 }

@@ -18,6 +18,9 @@ import empresaTransporte.utp.repositorio.UsuarioClaveRepository;
 import empresaTransporte.utp.repositorio.UsuariosRepository;
 import empresaTransporte.utp.servicio.ColaboradorService;
 import empresaTransporte.utp.servicio.UsuarioService;
+import empresaTransporte.utp.util.RespuestaControlador;
+import empresaTransporte.utp.util.dto.LoginRequestDTO;
+import empresaTransporte.utp.util.dto.ObjetosMenuResponseDTO;
 import empresaTransporte.utp.util.enums.CargoEnum;
 import empresaTransporte.utp.util.enums.PerfilEnum;
 import empresaTransporte.utp.util.enums.UsuarioTipoEnum;
@@ -25,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -102,6 +106,62 @@ public class UsuarioServiceImpl implements UsuarioService {
                 perfilUsuarioObjRepository.save(perfilUsuarioObj);
             }
         }
+    }
+
+    @Override
+    public RespuestaControlador validarLogin(LoginRequestDTO loginRequestDTO) {
+        final String mensajeError = "Credenciales incorrectas";
+        RespuestaControlador respuestaControlador;
+        Usuarios usuario = usuariosRepository.findByLogin(loginRequestDTO.getUsuario());
+        if (usuario != null) {
+            UsuarioClave claveUsuario = usuarioClaveRepository.findByUsuarioIdAndActivo(usuario.getId(), Boolean.TRUE);
+            if (claveUsuario != null) {
+                if (claveUsuario.getPassword().equals(loginRequestDTO.getPassword())) {
+                    List<ObjetosMenuResponseDTO> listado = obtenerMenuUsuarioLogueado(usuario);
+                    respuestaControlador = RespuestaControlador.obtenerRespuestaExitoConExtraInfo(listado);
+                } else {
+                    respuestaControlador = RespuestaControlador.obtenerRespuestaDeError(mensajeError);
+                }
+            } else {
+                respuestaControlador = RespuestaControlador.obtenerRespuestaDeError(mensajeError);
+            }
+        } else {
+            respuestaControlador = RespuestaControlador.obtenerRespuestaDeError(mensajeError);
+        }
+        return respuestaControlador;
+    }
+
+    private List<ObjetosMenuResponseDTO> obtenerMenuUsuarioLogueado(Usuarios usuario){
+        List<ObjetosMenuResponseDTO> objetosMenu = new ArrayList<>();
+        PerfilUsuario perfilUsuario = perfilUsuarioRepository.findByUsuarioIdAndActivo(usuario.getId(), Boolean.TRUE);
+        if (perfilUsuario != null) {
+            List<PerfilUsuarioObj> listado = perfilUsuarioObjRepository.findByPerfilUsuarioIdAndActivo(perfilUsuario.getId(), Boolean.TRUE);
+            if (!listado.isEmpty()){
+                for (PerfilUsuarioObj item : listado) {
+                    if (item.getObjetos().getObjetoPadre() == null) {
+                        ObjetosMenuResponseDTO menuResponseDTOPadre = new ObjetosMenuResponseDTO();
+                        menuResponseDTOPadre.setId(item.getObjetos().getId());
+                        menuResponseDTOPadre.setNombre(item.getObjetos().getDescripcion());
+                        objetosMenu.add(menuResponseDTOPadre);
+                    }
+                }
+                for (ObjetosMenuResponseDTO menuResponseDTO : objetosMenu) {
+                    List<ObjetosMenuResponseDTO> detalle = new ArrayList<>();
+                    for (PerfilUsuarioObj item : listado) {
+                        if (item.getObjetos().getObjetoPadre() != null) {
+                            if (menuResponseDTO.getId().equals(item.getObjetos().getObjetoPadre().getId())) {
+                                ObjetosMenuResponseDTO menuResponseDTOPadre = new ObjetosMenuResponseDTO();
+                                menuResponseDTOPadre.setId(item.getObjetos().getId());
+                                menuResponseDTOPadre.setNombre(item.getObjetos().getDescripcion());
+                                detalle.add(menuResponseDTOPadre);
+                            }
+                        }
+                    }
+                    menuResponseDTO.setDetalle(detalle);
+                }
+            }
+        }
+        return objetosMenu;
     }
 
     private String generarClaveAleatoria() {

@@ -1,5 +1,6 @@
 package empresaTransporte.utp.entidad.master;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,13 +11,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+
 
 @Entity
 @Table(name = "bancos", schema = "master")
 @Getter
 @Setter
-public class Bancos implements Serializable {
+public class Banco implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,21 +32,21 @@ public class Bancos implements Serializable {
     private String abreviatura;
 
     @Column(name = "ban_nomcom")
-    private String nomcom;
+    private String nombreCompleto;
 
     @Column(name = "ban_numero")
     private String numero;
 
-    @Column(name = "ban_numcta")
-    private String numcta;
-
-    @Column(name = "ban_numcci")
-    private String numcci;
+    @Column(name = "ban_activo")
+    private boolean activo;
 
     @Column(name = "ban_chkenv")
     private Integer chkenv;
 
-    @Column(name = "ban_activo")
-    private boolean activo;
-}
+    @Column(name = "ban_numcta")
+    private Integer numCuenta;
 
+    @Column(name = "ban_numcci")
+    private Integer numCci;
+
+}

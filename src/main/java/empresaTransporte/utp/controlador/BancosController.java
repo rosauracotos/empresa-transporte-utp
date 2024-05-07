@@ -1,8 +1,8 @@
 package empresaTransporte.utp.controlador;
 
 
-import empresaTransporte.utp.entidad.master.Bancos;
-import empresaTransporte.utp.servicio.impl.BancosService;
+import empresaTransporte.utp.entidad.master.Banco;
+import empresaTransporte.utp.servicio.impl.BancoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,16 +16,16 @@ import java.util.List;
 public class BancosController {
 
     @Autowired
-    private BancosService bancosService;
+    private BancoService bancosService;
 
     @GetMapping("/all")
-    public List<Bancos> obtenerBancos() {
-        return bancosService.obtenerBancos();
+        public List<Banco> obtenerBancos() {
+        return bancosService.obtenerBanco();
     }
 
     @GetMapping("/{id}")
-    public Bancos obtenerBancosPorId(@PathVariable("id") Long bancosId) {
-        return bancosService.obtenerPorId(bancosId);
+    public Banco obtenerBancosPorId(@PathVariable("id") Long id) {
+        return bancosService.obtenerPorId(id);
     }
 }
 
