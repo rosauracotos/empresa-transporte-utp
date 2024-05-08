@@ -1,6 +1,7 @@
 package empresaTransporte.utp.controlador;
 
 import empresaTransporte.utp.entidad.ubigeo.UbigeoDist;
+import empresaTransporte.utp.entidad.ubigeo.UbigeoProv;
 import empresaTransporte.utp.servicio.impl.UbigeoDistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,14 @@ public class UbigeoDistController {
         }
         return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 
+    }
+
+    @GetMapping("/provincia/{idProvincia}")
+    public ResponseEntity<?> obtenerDistritosPorProvincia(@PathVariable Long idProvincia) {
+        List<UbigeoDist> distritos = ubigeoDistService.obtenerDistritosPorProvincia(idProvincia);
+        if (!distritos.isEmpty()) {
+            return new ResponseEntity<>(distritos, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

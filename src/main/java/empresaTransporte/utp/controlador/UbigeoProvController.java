@@ -35,5 +35,14 @@ public class UbigeoProvController {
 
     }
 
+    @GetMapping("/departamento/{idDepartamento}")
+    public ResponseEntity<?> obtenerProvinciasPorDepartamento(@PathVariable Long idDepartamento) {
+        List<UbigeoProv> provincias = ubigeoProvService.obtenerProvinciasPorDepartamento(idDepartamento);
+        if (!provincias.isEmpty()) {
+            return new ResponseEntity<>(provincias, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 
 }

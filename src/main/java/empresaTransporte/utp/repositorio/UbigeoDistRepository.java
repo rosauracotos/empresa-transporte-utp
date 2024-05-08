@@ -1,7 +1,9 @@
 package empresaTransporte.utp.repositorio;
 
 import empresaTransporte.utp.entidad.ubigeo.UbigeoDist;
+import empresaTransporte.utp.entidad.ubigeo.UbigeoProv;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +15,6 @@ public interface UbigeoDistRepository extends JpaRepository<UbigeoDist, Long> {
     List<UbigeoDist> findUbigeoDistByActivoTrue();
 
     Optional<UbigeoDist> findById(Long id);
+
+    List<UbigeoDist> findByProvinciaIdAndActivoIsTrue(@Param("idProvincia") Long idProvincia);
 }

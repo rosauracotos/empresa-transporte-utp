@@ -21,4 +21,8 @@ public class UbigeoProvService {
     public UbigeoProv obtenerPorId(Long id) {
         return ubigeoProvRepository.findById(id).get();
     }
+
+    public List<UbigeoProv> obtenerProvinciasPorDepartamento(Long idDepartamento) {
+        return ubigeoProvRepository.findByDepartamentoIdAndActivoIsTrue(idDepartamento);
+    }
 }
