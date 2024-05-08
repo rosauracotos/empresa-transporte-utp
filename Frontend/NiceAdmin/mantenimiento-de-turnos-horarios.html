@@ -28,7 +28,6 @@
         display: none;
     }
   </style>
-  
 </head>
 <body>
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -79,21 +78,21 @@
                       <label for="inputText" class="col-form-label">Paterno</label>
                     </div>
                     <div class="col-xxl-2">
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
                     <div class="col-xxl-1">
                       <label for="inputText" class="col-form-label">Materno</label>
                     </div>
                     <div class="col-xxl-2">
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
                     </div>
                     <div class="col-xxl-1">
                       <label for="inputText" class="col-form-label">Nombres</label>
                     </div>
-                    <div class="col-xxl-3">
-                      <input type="text" class="form-control">
-                    </div>
                     <div class="col-xxl-2">
+                      <input type="text" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
+                    <div class="col-xxl-3">
                       <button class="btn btn-outline-primary btn-block">Buscar</button>
                     </div>
                   </div>
@@ -118,36 +117,6 @@
                             <td>07636218</td>
                             <td>MENACHO DAZA MARTIN ARMANDO</td>
                           </tr>
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>07636218</td>
-                            <td>MENACHO DAZA MARTIN ARMANDO</td>
-                          </tr>
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>07636218</td>
-                            <td>MENACHO DAZA MARTIN ARMANDO</td>
-                          </tr>
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>07636218</td>
-                            <td>MENACHO DAZA MARTIN ARMANDO</td>
-                          </tr>
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>07636218</td>
-                            <td>MENACHO DAZA MARTIN ARMANDO</td>
-                          </tr>
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>07636218</td>
-                            <td>MENACHO DAZA MARTIN ARMANDO</td>
-                          </tr>
-                          <tr>
-                            <td><input type="checkbox"></td>
-                            <td>07636218</td>
-                            <td>MENACHO DAZA MARTIN ARMANDO</td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -156,12 +125,10 @@
                         <div class="calendar-box"></div>
                       </div>
                       <div>
-                        <select name="turno" id="tur_id" class="select-form" style="margin-top: 350px;margin-left: 0px;">
-						  <option value="1">08:00 - 16:00</option>
-						  <option value="2">16:00 - 00:00</option>
-						</select>
-                        <button class="btn btn-outline-primary" style="margin-left: 14vh;">GUARDAR</button>
-                        <button class="btn btn-outline-danger">CANCELAR</button>
+                        <select name="turno" id="tur_id" class="select-form" style="margin-top: 300px;margin-left: 0px;" id="tur_id">
+						            </select>
+                        <button class="btn btn-outline-primary" style="margin-left: 17%;">GUARDAR</button>
+                        <button class="btn btn-outline-danger" onclick="location.href='inicio.html'">CANCELAR</button>
                       </div>
                     </div>
                   </div>
@@ -176,9 +143,7 @@
 
   </main><!-- End #main -->
 
-
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -233,7 +198,7 @@
     }, function (start, end, label) {
         $(".calendar-box").html(start.format('DD-MM-YYYY') + " <i class='fas fa-minus'></i> " + end.format('DD-MM-YYYY'));
     });
-    
+
     $('.calendar-box').data('daterangepicker').show();
     $('.calendar-box').data('daterangepicker').hide = function () { };
 });

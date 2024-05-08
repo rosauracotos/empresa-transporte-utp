@@ -71,18 +71,13 @@
                       </div>
                       <div class="col-xxl-5">
                         <select class="form-select" aria-label="Default select example" id="ard_id">
-                          <option selected>-- Seleccione --</option>
-						  
-                          <option value="1">SubGerencia de Recursos Humanos</option>
                         </select>
                       </div>
                       <div class="col-xxl-1">
                         <label for="inputText" class="col-form-label">Cargo</label>
                       </div>
                       <div class="col-xxl-5 text-left">
-                        <select class="form-select" aria-label="Default select example">
-                          <option selected>-- Seleccione --</option>
-                          <option value="1">Planillero</option>
+                        <select class="form-select" aria-label="Default select example" id="crg_id">
                         </select>
                       </div>
                     </div>
@@ -92,32 +87,23 @@
                       </div>
                       <div class="col-xxl-3">
                         <div class="input-group mb-3">
-                          <select class="form-select" aria-label="Default select example" style="margin-right: 15px;border-radius: 5px">
-                            <option selected>-- Seleccione --</option>
-                            <option value="1">DNI</option>
-							<option value="2">Carnet Extranjeria</option>
+                          <select class="form-select" aria-label="Default select example" style="margin-right: 15px;border-radius: 5px" id="tdi_id">
                           </select>
-						  <input type="text" class="form-control" style="border-radius: 5px">
+						              <input type="text" class="form-control" style="border-radius: 5px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                         </div>
                       </div>
                       <div class="col-xxl-1">
                         <label for="inputText" class="col-form-label">Cond.Laboral</label>
                       </div>
                       <div class="col-xxl-3 text-left">
-                        <select class="form-select" aria-label="Default select example">
-                          <option selected>-- Seleccione --</option>
-                          <option value="1">Empleado</option>
+                        <select class="form-select" aria-label="Default select example" id="grl_id">
                         </select>
                       </div>
                       <div class="col-xxl-1">
                         <label for="inputText" class="col-form-label">Estado</label>
                       </div>
                       <div class="col-xxl-3 text-left">
-                        <select class="form-select" aria-label="Default select example">
-                          <option selected>-- Seleccione --</option>
-                          <option value="1">Activo</option>
-                          <option value="2">Inactivo</option>
-                          <option value="3">Todos</option>
+                        <select class="form-select" aria-label="Default select example" id="ese_id">
                         </select>
                       </div>
                     </div>
@@ -126,24 +112,24 @@
                         <label for="inputText" class="col-form-label">Paterno</label>
                       </div>
                       <div class="col-xxl-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
                       </div>
                       <div class="col-xxl-1">
                         <label for="inputText" class="col-form-label">Materno</label>
                       </div>
                       <div class="col-xxl-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
                       </div>
                       <div class="col-xxl-1">
                         <label for="inputText" class="col-form-label">Nombres</label>
                       </div>
                       <div class="col-xxl-3">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" style="text-transform:uppercase;" value="" onkeyup="javascript:this.value=this.value.toUpperCase();">
                       </div>
                     </div>
                     <div class="col-xxl-4" style="margin-top: 20px">
                       <button class="btn btn-outline-primary">Buscar</button>
-                      <button class="btn btn-outline-success">Nuevo</button>
+                      <button class="btn btn-outline-success" onclick="location.href='registro-edicion-empleados.html'">Nuevo</button>
                     </div>
                 </div>
               </div>
