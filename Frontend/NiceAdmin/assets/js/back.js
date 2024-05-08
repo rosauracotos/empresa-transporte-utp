@@ -143,7 +143,7 @@ $.ajax({
 });
 
 $.ajax({
-	url: "http://localhost:8080/api/comisionafp/all"
+	url: "http://localhost:8080/api/comisionafp/listar"
 	})
 	.done(function( data ) {
 		var comafp = data;
