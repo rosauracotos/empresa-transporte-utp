@@ -11,7 +11,6 @@ public class CorsConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
 
-<<<<<<< HEAD
     return new WebMvcConfigurer() {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
@@ -20,18 +19,5 @@ public class CorsConfig {
                     .allowedMethods("*");
         }
     };
-=======
-
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("*")
-                        .allowedMethods("*");
-            }
-        };
-
->>>>>>> fdc2de3f40a3645e0da5ba9cc3363335bd552ab8
-
     }
 }
