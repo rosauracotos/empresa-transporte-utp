@@ -24,8 +24,8 @@ public class ColaboradorLaboralServiceImpl implements ColaboradorLabService {
     private UsuarioService usuarioService;
 
     @Override
-    public List<ColaboradorLaborales> listarColaboradoresLaborales() {
-        return colaboradorLaboralesRepository.findAll();
+    public List<ColaboradorLaborales> listarColaboradoresLaboralesActivos() {
+        return colaboradorLaboralesRepository.findColabLaboralByEstadoTrue();
     }
 
     @Override

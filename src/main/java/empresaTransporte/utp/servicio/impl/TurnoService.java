@@ -19,6 +19,6 @@ public class TurnoService {
     }
 
     public Turno obtenerPorId(Long id) {
-        return turnoRepository.getById(id);
+        return turnoRepository.findById(id).get();
     }
 }

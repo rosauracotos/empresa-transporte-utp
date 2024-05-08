@@ -19,6 +19,6 @@ public class AreaClasificacionService {
     }
 
     public AreaClasificacion obtenerPorId(Long id) {
-        return areaClasificacionRepository.getById(id);
+        return areaClasificacionRepository.findById(id).get();
     }
 }

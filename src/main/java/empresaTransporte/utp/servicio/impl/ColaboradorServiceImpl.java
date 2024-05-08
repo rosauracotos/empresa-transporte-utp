@@ -23,8 +23,8 @@ public class ColaboradorServiceImpl implements ColaboradorService {
 
 
     @Override
-    public List<Colaborador> listarColaboradores() {
-        return colaboradorRepository.findAll();
+    public List<Colaborador> listarColaboradoresActivos() {
+        return colaboradorRepository.findBancoByActivoTrue();
     }
 
     @Override
@@ -51,7 +51,10 @@ public class ColaboradorServiceImpl implements ColaboradorService {
 
     @Override
     public RespuestaControlador eliminar(Long id) {
-        return null;
+        RespuestaControlador respuestaControlador;
+        colaboradorRepository.deleteById(id);
+        respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoEliminar("colaborador");
+        return respuestaControlador;
     }
 
     private String generarCodigoUsuario (){

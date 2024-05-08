@@ -19,6 +19,6 @@ public class RegimenPensionarioService {
     }
 
     public RegimenPensionario obtenerPorId(Long id) {
-        return regimenPensionarioRepository.getById(id);
+        return regimenPensionarioRepository.findById(id).get();
     }
 }

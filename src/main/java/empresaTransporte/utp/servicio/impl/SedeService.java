@@ -19,6 +19,6 @@ public class SedeService {
     }
 
     public Sede obtenerPorId(Long id) {
-        return sedeRepository.getById(id);
+        return sedeRepository.findById(id).get();
     }
 }

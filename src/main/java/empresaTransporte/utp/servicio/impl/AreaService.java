@@ -20,6 +20,6 @@ public class AreaService {
     }
 
     public Area obtenerPorId(Long id) {
-        return areaRepository.getById(id);
+        return areaRepository.findById(id).get();
     }
 }

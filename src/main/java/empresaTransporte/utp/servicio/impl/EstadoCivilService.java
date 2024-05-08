@@ -18,7 +18,7 @@ public class EstadoCivilService {
     }
 
     public EstadoCivil obtenerPorId(Long id) {
-        return estadoCivilRepository.getById(id);
+        return estadoCivilRepository.findById(id).get();
     }
 
 

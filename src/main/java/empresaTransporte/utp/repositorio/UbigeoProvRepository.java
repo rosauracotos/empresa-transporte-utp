@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UbigeoProvRepository extends JpaRepository<UbigeoProv, Long> {
 
     List<UbigeoProv> findUbigeoProvtByActivoTrue();
 
-    UbigeoProv getById(Long id);
+    Optional<UbigeoProv> findById(Long id);
 }

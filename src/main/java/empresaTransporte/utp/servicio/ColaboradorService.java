@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ColaboradorService {
 
-    List<Colaborador> listarColaboradores();
+    List<Colaborador> listarColaboradoresActivos();
 
     RespuestaControlador guardar (Colaborador colaborador);
 

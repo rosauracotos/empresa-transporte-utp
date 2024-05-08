@@ -19,6 +19,6 @@ public class TipoDocService {
     }
 
     public TipoDoc obtenerPorId(Long id) {
-        return tipoDocRepository.getById(id);
+        return tipoDocRepository.findById(id).get();
     }
 }

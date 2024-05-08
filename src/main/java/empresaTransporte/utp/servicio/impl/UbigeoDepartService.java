@@ -19,6 +19,6 @@ public class UbigeoDepartService {
     }
 
     public UbigeoDepart obtenerPorId(Long id) {
-        return ubigeoDepartRepository.getById(id);
+        return ubigeoDepartRepository.findById(id).get();
     }
 }

@@ -19,6 +19,6 @@ public class GrupoLaboralService {
     }
 
     public GrupoLaboral obtenerPorId(Long id) {
-        return grupoLaboralRepository.getById(id);
+        return grupoLaboralRepository.findById(id).get();
     }
 }

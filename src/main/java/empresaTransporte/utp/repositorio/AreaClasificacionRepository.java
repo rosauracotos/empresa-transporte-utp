@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AreaClasificacionRepository extends JpaRepository<AreaClasificacion, Long> {
 
     List<AreaClasificacion> findAreaClasificacionByActivoTrue();
 
-    AreaClasificacion getById(Long id);
+    Optional<AreaClasificacion> findById(Long id);
 }

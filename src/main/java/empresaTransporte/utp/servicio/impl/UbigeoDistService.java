@@ -18,6 +18,6 @@ public class UbigeoDistService {
     }
 
     public UbigeoDist obtenerPorId(Long id) {
-        return ubigeoDistRepository.getById(id);
+        return ubigeoDistRepository.findById(id).get();
     }
 }

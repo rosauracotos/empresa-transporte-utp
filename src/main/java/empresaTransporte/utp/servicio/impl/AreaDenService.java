@@ -19,6 +19,6 @@ public class AreaDenService {
     }
 
     public AreaDen obtenerPorId(Long id) {
-        return areaDenRepository.getById(id);
+        return areaDenRepository.findById(id).get();
     }
 }

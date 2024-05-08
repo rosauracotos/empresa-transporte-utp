@@ -19,6 +19,6 @@ public class TipoGeneroService {
     }
 
     public TipoGenero obtenerPorId(Long id) {
-        return tipoGeneroRepository.getById(id);
+        return tipoGeneroRepository.findById(id).get();
     }
 }

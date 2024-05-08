@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ColaboradorLabService {
 
-    List<ColaboradorLaborales> listarColaboradoresLaborales();
+    List<ColaboradorLaborales> listarColaboradoresLaboralesActivos();
 
     public RespuestaControlador guardar (ColaboradorLaborales colaboradorLaborales);
 

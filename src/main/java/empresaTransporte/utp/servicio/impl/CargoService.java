@@ -18,6 +18,6 @@ public class CargoService {
     }
 
     public Cargo obtenerPorId(Long id) {
-        return cargoRepository.getById(id);
+        return cargoRepository.findById(id).get();
     }
 }

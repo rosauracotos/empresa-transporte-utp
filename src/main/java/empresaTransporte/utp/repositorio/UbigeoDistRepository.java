@@ -5,11 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UbigeoDistRepository extends JpaRepository<UbigeoDist, Long> {
 
     List<UbigeoDist> findUbigeoDistByActivoTrue();
 
-    UbigeoDist getById(Long id);
+    Optional<UbigeoDist> findById(Long id);
 }

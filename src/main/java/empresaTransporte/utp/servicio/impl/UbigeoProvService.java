@@ -19,6 +19,6 @@ public class UbigeoProvService {
     }
 
     public UbigeoProv obtenerPorId(Long id) {
-        return ubigeoProvRepository.getById(id);
+        return ubigeoProvRepository.findById(id).get();
     }
 }

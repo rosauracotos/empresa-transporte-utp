@@ -22,7 +22,7 @@ public class ColabLabController {
 
     @GetMapping("/listar")
     public ResponseEntity<?> listar(){
-        return ResponseEntity.ok(colaboradorLabService.listarColaboradoresLaborales());
+        return ResponseEntity.ok(colaboradorLabService.listarColaboradoresLaboralesActivos());
     }
 
     @PostMapping("/guardar")

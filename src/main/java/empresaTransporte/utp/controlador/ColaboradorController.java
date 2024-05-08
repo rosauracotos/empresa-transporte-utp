@@ -6,6 +6,7 @@ import empresaTransporte.utp.util.RespuestaControlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class ColaboradorController {
 
     @GetMapping("/listar")
     public ResponseEntity<?> listar(){
-        return ResponseEntity.ok(colaboradorService.listarColaboradores());
+        return ResponseEntity.ok(colaboradorService.listarColaboradoresActivos());
     }
 
     @PostMapping("/guardar")
@@ -63,5 +64,15 @@ public class ColaboradorController {
         return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<?> desactivarColaborador(@PathVariable Long id) {
+        Colaborador colaboradorDb = colaboradorService.findById(id);
+        if (colaboradorDb != null) {
+            colaboradorDb.setActivo(false); // Cambia el estado del colaborador a false
+            colaboradorService.actualizar(colaboradorDb);
+            return ResponseEntity.ok("Colaborador desactivado exitosamente.");
+        }
+        return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+    }
 
 }

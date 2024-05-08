@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AreaRepository extends JpaRepository<Area, Long> {
 
     List<Area> findAreaByActivoTrue();
 
-    Area getById(Long id);
+    Optional<Area> findById(Long id);
 }

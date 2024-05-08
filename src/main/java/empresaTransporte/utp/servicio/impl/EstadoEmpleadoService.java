@@ -19,6 +19,6 @@ public class EstadoEmpleadoService {
     }
 
     public EstadoEmpleado obtenerPorId(Long id) {
-        return estadoEmpleadoRepository.getById(id);
+        return estadoEmpleadoRepository.findById(id).get();
     }
 }
