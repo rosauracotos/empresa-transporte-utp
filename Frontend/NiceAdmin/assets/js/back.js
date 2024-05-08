@@ -154,6 +154,18 @@ $.ajax({
 	$("#caf_id").html(html);
 });
 
+$.ajax({
+	url: "http://localhost:8080/api/turno/all"
+	})
+	.done(function( data ) {
+		var turnos = data;
+		let html = '<option selected>-- Seleccione --</option>';
+		turnos.forEach(function(turnos, index) {
+			html+='<option value="'+turnos.id+'">'+turnos.descripcion+'</option>'
+		});
+	$("#tur_id").html(html);
+});
+
 function traepro(){
 	alert('Hola');
 }
