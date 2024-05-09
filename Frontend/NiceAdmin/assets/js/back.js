@@ -107,18 +107,6 @@ $.ajax({
 });
 
 $.ajax({
-	url: "http://localhost:8080/api/ubigeoDepartamento/all"
-	})
-	.done(function( data ) {
-		var ubidep = data;
-		let html = '<option selected>-- Seleccione --</option>';
-		ubidep.forEach(function(ubidep, index) {
-			html+='<option value="'+ubidep.id+'">'+ubidep.descripcion+'</option>'
-		});
-	$("#ude_id").html(html);
-});
-
-$.ajax({
 	url: "http://localhost:8080/api/bancos/all"
 	})
 	.done(function( data ) {
@@ -166,6 +154,58 @@ $.ajax({
 	$("#tur_id").html(html);
 });
 
-function traepro(){
-	alert('Hola');
-}
+$.ajax({
+	url: "http://localhost:8080/api/ubigeoProvincia/departamento/"
+	})
+	.done(function( data ) {
+		var ubidep = data;
+		let html = '<option selected>-- Seleccione --</option>';
+		ubidep.forEach(function(ubidep, index) {
+			html+='<option value="'+ubidep.id+'">'+ubidep.descripcion+'</option>'
+		});
+	$("#ude_id").html(html);
+});
+
+$("#ude_id").on("change",function(){
+	let selectDistrito = $("#udi_id");
+	selectDistrito.html("<option selected>-- Seleccione --</option>").attr("disabled",true);
+	let ude_id = $(this).val();
+	if(ude_id!=null){
+		$.ajax({
+			url: "http://localhost:8080/api/ubigeoProvincia/departamento/"+ude_id
+			})
+			.done(function( data ) {
+				let proDep = data;
+				let html = '<option selected>-- Seleccione --</option>';  
+				proDep.forEach(function(proDep, index) {
+					html+='<option value="'+proDep.id+'">'+proDep.descripcion+'</option>'
+				});
+			$("#upr_id").attr("disabled",false);
+			$("#upr_id").html(html);
+	
+		});
+	}
+	
+});
+
+$("#upr_id").on("change",function(){
+	let selectDistrito = $("#udi_id");
+	selectDistrito.html("<option selected>-- Seleccione --</option>").attr("disabled",true);
+	let upr_id = $(this).val();
+	if(upr_id!=null){
+		$.ajax({
+			url: "http://localhost:8080/api/ubigeoDistrito/provincia/"+upr_id
+			})
+			.done(function( data ) {
+				let disPro = data;
+				let html = '<option selected>-- Seleccione --</option>';  
+				disPro.forEach(function(disPro, index) {
+					html+='<option value="'+disPro.id+'">'+disPro.descripcion+'</option>'
+				});
+			$("#udi_id").attr("disabled",false);
+			$("#udi_id").html(html);
+	
+		});
+	}
+	
+});
