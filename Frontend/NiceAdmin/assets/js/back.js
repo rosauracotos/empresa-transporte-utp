@@ -167,8 +167,12 @@ $.ajax({
 });
 
 $("#ude_id").on("change",function(){
-	let selectDistrito = $("#udi_id");
-	selectDistrito.html("<option selected>-- Seleccione --</option>").attr("disabled",true);
+	let selectProvincia = $("#upr_id");
+	selectProvincia.html("<option selected>-- Seleccione --</option>").attr("disabled",true);
+
+	let selectDitrito = $("#udi_id");
+	selectDitrito.html("<option selected>-- Seleccione --</option>").attr("disabled",true);
+
 	let ude_id = $(this).val();
 	if(ude_id!=null){
 		$.ajax({
@@ -176,21 +180,29 @@ $("#ude_id").on("change",function(){
 			})
 			.done(function( data ) {
 				let proDep = data;
-				let html = '<option selected>-- Seleccione --</option>';  
+				let html = '<option selected>-- Seleccione --</option>';
 				proDep.forEach(function(proDep, index) {
 					html+='<option value="'+proDep.id+'">'+proDep.descripcion+'</option>'
 				});
 			$("#upr_id").attr("disabled",false);
 			$("#upr_id").html(html);
-	
 		});
 	}
-	
+	else{
+		let html = '<option selected>-- Seleccione --</option>';
+
+		$("#upr_id").attr("disabled",true);
+		$("#upr_id").html(html);
+
+		$("#udi_id").attr("disabled",true);
+		$("#udi_id").html(html);
+	}
 });
 
 $("#upr_id").on("change",function(){
 	let selectDistrito = $("#udi_id");
 	selectDistrito.html("<option selected>-- Seleccione --</option>").attr("disabled",true);
+
 	let upr_id = $(this).val();
 	if(upr_id!=null){
 		$.ajax({
@@ -204,8 +216,12 @@ $("#upr_id").on("change",function(){
 				});
 			$("#udi_id").attr("disabled",false);
 			$("#udi_id").html(html);
-	
 		});
 	}
-	
+	else{
+		let html = '<option selected>-- Seleccione --</option>';
+
+		$("#udi_id").attr("disabled",true);
+		$("#udi_id").html(html);
+	}
 });
