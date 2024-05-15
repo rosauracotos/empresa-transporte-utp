@@ -85,6 +85,7 @@ export class PersonalFormularioComponent {
       (response) =>{
         this.sweetAlertService.showAlertSuccess(response.mensaje);
         this.localStorageService.setItem('colaboradorId', response.extraInfo);
+        this.router.navigate(['/personal-laborales-formulario'])
       },
       (error) => {
         this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
@@ -116,5 +117,7 @@ export class PersonalFormularioComponent {
       }
     );
   }
+
+
 
 }

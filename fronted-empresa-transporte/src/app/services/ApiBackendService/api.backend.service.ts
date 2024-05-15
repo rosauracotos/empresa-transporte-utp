@@ -34,6 +34,41 @@ export class ApiBackendService {
     return this.http.get<any>(environment.apiUrl +`api/tipoDocumento/all`, { headers: headers });
   }
 
+  obtenerCondicionLaboral(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/grupoLaboral/all`, { headers: headers });
+  }
+
+  obtenerArea(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/areaDenominacion/all`, { headers: headers });
+  }
+
+  obtenerBanco(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/bancos/all`, { headers: headers });
+  }
+
+  obtenerRegimenPensionario(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/regimenPensionario/all`, { headers: headers });
+  }
+
+  obtenerComision(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/comisionafp/listar`, { headers: headers });
+  }
+
   obtenerEstadosEmpleados(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
