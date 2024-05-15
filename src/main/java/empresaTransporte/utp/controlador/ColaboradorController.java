@@ -3,6 +3,8 @@ package empresaTransporte.utp.controlador;
 import empresaTransporte.utp.entidad.colaborador.Colaborador;
 import empresaTransporte.utp.servicio.ColaboradorService;
 import empresaTransporte.utp.util.RespuestaControlador;
+import empresaTransporte.utp.util.dto.ColaboradorBusquedaRequestDTO;
+import empresaTransporte.utp.util.dto.ColaboradorBusquedaResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/colaborador")
@@ -73,6 +77,11 @@ public class ColaboradorController {
             return ResponseEntity.ok("Colaborador desactivado exitosamente.");
         }
         return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/busquedaPagina")
+    public ResponseEntity<?> busquedaPaginada(@RequestBody ColaboradorBusquedaRequestDTO dto) {
+        return ResponseEntity.ok(colaboradorService.busquedaPaginada(dto));
     }
 
 }

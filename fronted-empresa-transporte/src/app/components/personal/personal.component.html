@@ -1,0 +1,114 @@
+<app-menu></app-menu>
+<app-aside></app-aside>
+<div class="main-centrado">
+  <div class="pagetitle container-center">
+    <h1>MANTENIMIENTO DE EMPLEADOS</h1>
+  </div>
+  <div class="pagetitle">
+    <h3>Filtro de Busqueda</h3>
+  </div>
+  <mat-card>
+    <mat-card-content>
+      <form #filtroPersonalForm="ngForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Área</mat-label>
+            <mat-select [(ngModel)]="selectedArea" name="area">
+              @for (area of areas; track area) {
+                <mat-option [value]="area.id">{{area.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Cargo</mat-label>
+            <mat-select [(ngModel)]="selectedCargo" name="cargo">
+              @for (cargo of cargos; track cargo) {
+                <mat-option [value]="cargo.id">{{cargo.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="selectedEstadoEmpleado" name="estado">
+              @for (estado of estadosEmpleados; track estado) {
+                <mat-option [value]="estado.id">{{estado.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Tipo Documento</mat-label>
+            <mat-select [(ngModel)]="selectedTipoDocumento" name="tipoDocumento">
+              @for (tipoDocumento of tiposDocumentos; track tipoDocumento) {
+                <mat-option [value]="tipoDocumento.id">{{tipoDocumento.siglas}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+            <mat-label>Número Documento</mat-label>
+            <input matInput placeholder="Número Documento" [(ngModel)]="numeroDocumento" name="numeroDocumento" type="text" pattern="\d*" maxlength="12">
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Condición Laboral</mat-label>
+            <mat-select [(ngModel)]="selectedGrupoLaboral" name="grupo">
+              @for (grupo of gruposLaborales; track grupo) {
+                <mat-option [value]="grupo.id">{{grupo.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Número Documento" [(ngModel)]="nombre" name="nombre" type="text">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput placeholder="Número Documento" [(ngModel)]="apellidoPaterno" name="apellidoPaterno" type="text">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput placeholder="Número Documento" [(ngModel)]="apellidoMaterno" name="apellidoMaterno" type="text">
+          </mat-form-field>
+        </div>
+          <button mat-flat-button color="primary">Buscar</button>
+        <span style="margin-left: 10px; margin-right: 10px;"></span>
+          <button mat-flat-button color="warn" (click)="redirectNuevoPersonal()">Nuevo</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <br>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="numdocumento">
+      <th mat-header-cell *matHeaderCellDef> Documento</th>
+      <td mat-cell *matCellDef="let colaborador"> {{colaborador.numdocumento}} </td>
+    </ng-container>
+    <ng-container matColumnDef="persona">
+      <th mat-header-cell *matHeaderCellDef> Persona</th>
+      <td mat-cell *matCellDef="let colaborador"> {{colaborador.persona}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grupolaboral">
+      <th mat-header-cell *matHeaderCellDef> Grupo Laboral</th>
+      <td mat-cell *matCellDef="let colaborador"> {{colaborador.grupolaboral}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cargo">
+      <th mat-header-cell *matHeaderCellDef>Cargo</th>
+      <td mat-cell *matCellDef="let colaborador"> {{colaborador.cargo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="estadoempleado">
+      <th mat-header-cell *matHeaderCellDef>Estado Empleado</th>
+      <td mat-cell *matCellDef="let colaborador"> {{colaborador.estadoempleado}} </td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let colaborador">
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>

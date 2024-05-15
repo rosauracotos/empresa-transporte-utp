@@ -10,6 +10,7 @@ public class ObjetosMenuResponseDTO {
 
     private Long id;
     private String nombre;
+    private String url;
     private List<ObjetosMenuResponseDTO> detalle;
 
 }

@@ -39,4 +39,7 @@ public class Objetos implements Serializable {
     @JoinColumn(name = "obj_idpadr")
     private Objetos objetoPadre;
 
+    @Column(name = "obj_urlvis")
+    private String url;
+
 }

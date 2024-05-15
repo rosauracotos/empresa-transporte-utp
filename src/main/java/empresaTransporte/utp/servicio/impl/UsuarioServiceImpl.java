@@ -142,6 +142,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                         ObjetosMenuResponseDTO menuResponseDTOPadre = new ObjetosMenuResponseDTO();
                         menuResponseDTOPadre.setId(item.getObjetos().getId());
                         menuResponseDTOPadre.setNombre(item.getObjetos().getDescripcion());
+                        menuResponseDTOPadre.setUrl(item.getObjetos().getUrl());
                         objetosMenu.add(menuResponseDTOPadre);
                     }
                 }
@@ -153,6 +154,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                                 ObjetosMenuResponseDTO menuResponseDTOPadre = new ObjetosMenuResponseDTO();
                                 menuResponseDTOPadre.setId(item.getObjetos().getId());
                                 menuResponseDTOPadre.setNombre(item.getObjetos().getDescripcion());
+                                menuResponseDTOPadre.setUrl(item.getObjetos().getUrl());
                                 detalle.add(menuResponseDTOPadre);
                             }
                         }
