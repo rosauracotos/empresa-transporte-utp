@@ -22,11 +22,11 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> 
     @Query(value = "SELECT clb.col_id as colaboradorId, CONCAT(clb.col_apepat,' ',clb.col_apemat,' ',clb.col_nombre) as persona, " +
             "clb.col_numdoi as numDocumento, glb.grl_descri as grupoLaboral, carg.crg_descri as cargo, eemp.ese_descri as estadoEmpleado " +
             "FROM colaborador.colaborador clb " +
-            "INNER JOIN master.tipodocide tdoc ON tdoc.tdi_id = clb.tdi_id " +
-            "INNER JOIN master.estadoempleado eemp ON eemp.ese_id = clb.ese_id " +
-            "INNER JOIN colaborador.colaborador_laborales clbl ON clbl.col_id = clb.col_id " +
-            "INNER JOIN master.grupolaboral glb ON glb.grl_id = clbl.grl_id " +
-            "INNER JOIN master.cargo carg ON carg.crg_id = clbl.crg_id " +
+            "LEFT OUTER JOIN master.tipodocide tdoc ON tdoc.tdi_id = clb.tdi_id " +
+            "LEFT OUTER JOIN master.estadoempleado eemp ON eemp.ese_id = clb.ese_id " +
+            "LEFT OUTER JOIN colaborador.colaborador_laborales clbl ON clbl.col_id = clb.col_id " +
+            "LEFT OUTER JOIN master.grupolaboral glb ON glb.grl_id = clbl.grl_id " +
+            "LEFT OUTER JOIN master.cargo carg ON carg.crg_id = clbl.crg_id " +
             "WHERE clb.col_activo " +
             "AND (:nombre IS NULL OR lower(clb.col_nombre) ILIKE lower(concat('%', :nombre, '%'))) " +
             "AND (:apellidoPaterno IS NULL OR lower(clb.col_apepat) ILIKE lower(concat('%', :apellidoPaterno, '%'))) " +
@@ -52,11 +52,11 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> 
 
     @Query(value = "SELECT COUNT(clb.*) " +
             "FROM colaborador.colaborador clb " +
-            "INNER JOIN master.tipodocide tdoc ON tdoc.tdi_id = clb.tdi_id " +
-            "INNER JOIN master.estadoempleado eemp ON eemp.ese_id = clb.ese_id " +
-            "INNER JOIN colaborador.colaborador_laborales clbl ON clbl.col_id = clb.col_id " +
-            "INNER JOIN master.grupolaboral glb ON glb.grl_id = clbl.grl_id " +
-            "INNER JOIN master.cargo carg ON carg.crg_id = clbl.crg_id " +
+            "LEFT OUTER JOIN master.tipodocide tdoc ON tdoc.tdi_id = clb.tdi_id " +
+            "LEFT OUTER JOIN master.estadoempleado eemp ON eemp.ese_id = clb.ese_id " +
+            "LEFT OUTER JOIN colaborador.colaborador_laborales clbl ON clbl.col_id = clb.col_id " +
+            "LEFT OUTER JOIN master.grupolaboral glb ON glb.grl_id = clbl.grl_id " +
+            "LEFT OUTER JOIN master.cargo carg ON carg.crg_id = clbl.crg_id " +
             "WHERE clb.col_activo " +
             "AND (:nombre IS NULL OR lower(clb.col_nombre) ILIKE lower(concat('%', :nombre, '%'))) " +
             "AND (:apellidoPaterno IS NULL OR lower(clb.col_apepat) ILIKE lower(concat('%', :apellidoPaterno, '%'))) " +

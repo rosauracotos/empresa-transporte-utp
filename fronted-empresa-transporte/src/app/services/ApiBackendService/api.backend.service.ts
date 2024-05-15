@@ -48,6 +48,74 @@ export class ApiBackendService {
     return this.http.get<any>(environment.apiUrl +`api/grupoLaboral/all`, { headers: headers });
   }
 
+  obtenerGeneros(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/tipoGenero/all`, { headers: headers });
+  }
+
+  obtenerEstadoCiviles(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/estadoCivil/all`, { headers: headers });
+  }
+
+  obtenerDepartamentos(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/ubigeoDepartamento/all`, { headers: headers });
+  }
+
+  obtenerProvinciasPorDepartamento(departamentoId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/ubigeoProvincia/departamento/`+ departamentoId, { headers: headers });
+  }
+
+  obtenerDistrirosPorProvincia(provinciaId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/ubigeoDistrito/provincia/`+ provinciaId, { headers: headers });
+  }
+
+  guardarColaborador(apellidoPaterno: string, apellidoMaterno: string, nombre: string, numeroIdentificacion: string,
+                     fechaNacimiento: string, celular: string, direccion: string, correo: string, tipoDocumentoId: number,
+                     tipoGeneroId: number, estadoCiviloId: number, distritoId: number): Observable<any> {
+
+    const body = {
+      apellidoPaterno: apellidoPaterno,
+      apellidoMaterno: apellidoMaterno,
+      nombre: nombre,
+      numeroIdentificacion: numeroIdentificacion,
+      fechaNacimiento: fechaNacimiento,
+      celular: celular,
+      direccion: direccion,
+      correo: correo,
+      tipoDocumento: {
+        id :tipoDocumentoId
+      },
+      tipoGenero: {
+        id :tipoGeneroId
+      },
+      estadoCivil: {
+        id :estadoCiviloId
+      },
+      distrito: {
+        id :distritoId
+      }
+    };
+    console.log(body);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(environment.apiUrl +`api/colaborador/guardar`, body, { headers: headers });
+  }
+
   busquedaPaginadaPersonal(numeroDocumento: string, nombre:string, apellidoPaterno: string, apellidoMaterno:string ,
                            selectedArea: any, selectedCargo:any, selectedTipoDocumento: any, selectedEstadoEmpleado: any,
                            selectedGrupoLaboral: any): Observable<any> {

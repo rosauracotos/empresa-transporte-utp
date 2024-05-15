@@ -1,0 +1,118 @@
+<app-menu></app-menu>
+<app-aside></app-aside>
+<div class="main-centrado">
+  <div class="pagetitle container-center">
+    <h1>REGISTRO/EDICIÓN DE EMPLEADOS</h1>
+  </div>
+  <div class="pagetitle">
+    <h3>Datos Personales</h3>
+  </div>
+  <mat-card>
+    <mat-card-content>
+      <form #formPersonalForm="ngForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select2">
+            <mat-label>Codigo</mat-label>
+            <input matInput placeholder="Codigo" [(ngModel)]="codigo" name="codigo" type="text" disabled maxlength="6">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select2">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Nombre" [(ngModel)]="nombre" name="nombre" type="text" required maxlength="100">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select2">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput placeholder="Apellido Paterno" [(ngModel)]="apellidoPaterno" required name="apellidoPaterno" type="text"  maxlength="100">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select2">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput placeholder="Apellido Materno" [(ngModel)]="apellidoMaterno" required name="apellidoMaterno" type="text"  maxlength="100">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width custom-mat-select ">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" name="date" required [(ngModel)]="selectedDateNacimiento">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Tipo Documento</mat-label>
+            <mat-select [(ngModel)]="selectedTipoDocumento" name="tipoDocumento" required>
+              @for (tipoDocumento of tiposDocumentos; track tipoDocumento) {
+                <mat-option [value]="tipoDocumento.id">{{tipoDocumento.siglas}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+            <mat-label>Número Documento</mat-label>
+            <input matInput placeholder="Número Documento" [(ngModel)]="numeroDocumento" required name="numeroDocumento" type="text" pattern="\d*" maxlength="12">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Género</mat-label>
+            <mat-select [(ngModel)]="selectedGenero" name="genero" required>
+              @for (genero of generos; track genero) {
+                <mat-option [value]="genero.id">{{genero.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Estado Civil</mat-label>
+            <mat-select [(ngModel)]="selectedEstadoCivil" name="estadoCivil" required>
+              @for (estadoCivil of estadosCiviles; track estadoCivil) {
+                <mat-option [value]="estadoCivil.id">{{estadoCivil.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+            <mat-label>Número Celular</mat-label>
+            <input matInput placeholder="Número Celular" [(ngModel)]="numeroCelular" required name="numeroCelular" type="text" pattern="\d*" maxlength="10">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Departamento</mat-label>
+            <mat-select [(ngModel)]="selectedDepartamento" required name="departamento" (selectionChange)="onDepartamentoSelectionChange($event)">
+              @for (departamento of departamentos; track departamento) {
+                <mat-option [value]="departamento.id">{{departamento.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Provincia</mat-label>
+            <mat-select [(ngModel)]="selectedProvincia" required name="provincia" (selectionChange)="onProvinciaSelectionChange($event)">
+              @for (provincia of provincias; track provincia) {
+                <mat-option [value]="provincia.id">{{provincia.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select">
+            <mat-label>Distrito</mat-label>
+            <mat-select [(ngModel)]="selectedDistrito" name="distrito" required>
+              @for (distrito of distritos; track distrito) {
+                <mat-option [value]="distrito.id">{{distrito.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select3">
+            <mat-label>Direccion</mat-label>
+            <input matInput placeholder="Direccion" [(ngModel)]="direccion" name="direccion" type="text" required maxlength="300">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select3">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" [(ngModel)]="email" email name="email" type="text" required maxlength="300">
+          </mat-form-field>
+        </div>
+        <button mat-flat-button [disabled]="!formPersonalForm.form.valid" color="primary">Guardar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

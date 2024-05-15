@@ -27,8 +27,11 @@ import {AsideComponent} from "./components/aside/aside.component"
 import {PersonalComponent} from "./components/personal/personal.component"
 import {BoletasComponent} from "./components/boletas/boletas.component"
 import {TurnosComponent} from "./components/turnos/turnos.component"
+import {PersonalFormularioComponent} from "./components/personal-formulario/personal-formulario.component"
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "red",
@@ -68,7 +71,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AsideComponent,
     PersonalComponent,
     BoletasComponent,
-    TurnosComponent
+    TurnosComponent,
+    PersonalFormularioComponent
    /* LoginComponent,
     InicioComponent,
     MenuComponent,
@@ -94,7 +98,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatListModule,
     MatExpansionModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule
   ],
   providers: [
     {
@@ -102,7 +107,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       useClass: LoaderInterceptor,
       multi: true
     },
-    SweetAlertService
+    SweetAlertService,
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })

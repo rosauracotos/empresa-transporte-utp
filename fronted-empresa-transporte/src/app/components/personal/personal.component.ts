@@ -28,7 +28,7 @@ export class PersonalComponent {
   selectedCargo: any;
   selectedTipoDocumento: any ;
   selectedEstadoEmpleado: any;
-  selectedGrupoLaboral: any = 1;
+  selectedGrupoLaboral: any;
 
   constructor(private apiBackendService: ApiBackendService,
               private sweetAlertService: SweetAlertService,
@@ -96,7 +96,7 @@ export class PersonalComponent {
   }
 
   redirectNuevoPersonal() {
-    this.router.navigate(['/boletas']);
+    this.router.navigate(['/personal-formulario']);
   }
 
 }
