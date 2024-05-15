@@ -9,7 +9,7 @@
   </div>
   <mat-card>
     <mat-card-content>
-      <form #formPersonalForm="ngForm" >
+      <form #formPersonalLaboralForm="ngForm" (ngSubmit)="onSubmit()">
         <div>
           <mat-form-field class="example-full-width custom-mat-select3">
             <mat-label>Condicion Laboral</mat-label>
@@ -32,7 +32,25 @@
           </mat-form-field>
         </div>
         <div>
-          <mat-form-field class="example-full-width custom-mat-select2">
+          <mat-form-field class="example-full-width custom-mat-select4">
+            <mat-label>Sede</mat-label>
+            <mat-select [(ngModel)]="selectedSede" name="sede" required>
+              @for (sede of sedes; track sede) {
+                <mat-option [value]="sede.id">{{sede.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width custom-mat-select4">
+            <mat-label>Cargo</mat-label>
+            <mat-select [(ngModel)]="selectedCargo" name="cargo" required>
+              @for (cargo of cargos; track cargo) {
+                <mat-option [value]="cargo.id">{{cargo.descripcion}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width custom-mat-select4">
             <mat-label>Banco</mat-label>
             <mat-select [(ngModel)]="selectedBanco" name="tipoDocumento" required>
               @for (banco of banco; track banco) {
@@ -40,13 +58,13 @@
               }
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline" class="example-full-width custom-mat-select2">
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select4">
             <mat-label>Número de Cuenta</mat-label>
-            <input matInput placeholder="Número Cuenta" required name="numeroCuenta" type="text" pattern="\d*" maxlength="12">
+            <input matInput placeholder="Número Cuenta" required [(ngModel)]="numeroCuenta" name="numeroCuenta" type="text" pattern="\d*" maxlength="12">
           </mat-form-field>
         </div>
         <div>
-          <mat-form-field class="example-full-width custom-mat-select2">
+          <mat-form-field class="example-full-width custom-mat-select">
             <mat-label>Regimen Pensionario</mat-label>
             <mat-select [(ngModel)]="selectedRegimenPensionario" name="regimenPensionario" required>
               @for (regimenPensionario of regimenPensionario; track regimenPensionario) {
@@ -54,7 +72,7 @@
               }
             </mat-select>
           </mat-form-field>
-          <mat-form-field class="example-full-width custom-mat-select2">
+          <mat-form-field class="example-full-width custom-mat-select">
             <mat-label>Comision</mat-label>
             <mat-select [(ngModel)]="selectedComision" name="comision" required>
               @for (comision of comision; track comision) {
@@ -62,12 +80,12 @@
               }
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline" class="example-full-width custom-mat-select2">
+          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
             <mat-label>Número CUPSS</mat-label>
-            <input matInput placeholder="Número Cupss" required name="numeroCupss" type="text" pattern="\d*" maxlength="12">
+            <input matInput placeholder="Número Cupss" [(ngModel)]="numeroCupss" required name="numeroCupss" type="text" pattern="\d*" maxlength="12">
           </mat-form-field>
         </div>
-        <button mat-flat-button [disabled]="!formPersonalForm.form.valid" color="primary">Guardar</button>
+        <button mat-flat-button [disabled]="!formPersonalLaboralForm.form.valid" color="primary">Guardar</button>
       </form>
     </mat-card-content>
   </mat-card>

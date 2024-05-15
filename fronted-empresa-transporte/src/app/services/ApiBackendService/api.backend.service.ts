@@ -27,6 +27,13 @@ export class ApiBackendService {
     return this.http.get<any>(environment.apiUrl +`api/cargo/all`, { headers: headers });
   }
 
+  obtenerSedes(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/sede/all`, { headers: headers });
+  }
+
   obtenerTiposDocumentos(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -149,6 +156,45 @@ export class ApiBackendService {
       'Content-Type': 'application/json'
     });
     return this.http.post<any>(environment.apiUrl +`api/colaborador/guardar`, body, { headers: headers });
+  }
+
+  guardarColaboradorLaboral(numCupss: string, numeroCuenta: string,
+                            colaboradorId: number, comisionafpId: number,
+                            sedeId: number, grupoLaboralId: number, areaDenominacionId: number,
+                            regimenPensionarioId: number, cargoId:number, bancoId: number): Observable<any> {
+
+    const body = {
+      numCupss: numCupss,
+      numeroCuenta: numeroCuenta,
+      colaborador: {
+        id :colaboradorId
+      },
+      sede: {
+        id :sedeId
+      },
+      cargo: {
+        id :cargoId
+      },
+      grupoLaboral: {
+        id :grupoLaboralId
+      },
+      areaDenominacion: {
+        id :areaDenominacionId
+      },
+      banco: {
+        id :bancoId
+      },
+      regimenPensionario: {
+        id :regimenPensionarioId
+      },
+      comisionafp: {
+        id: comisionafpId
+      }
+    };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(environment.apiUrl +`api/colaboradorLaboral/guardar`, body, { headers: headers });
   }
 
   busquedaPaginadaPersonal(numeroDocumento: string, nombre:string, apellidoPaterno: string, apellidoMaterno:string ,
