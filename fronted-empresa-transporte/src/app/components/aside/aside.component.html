@@ -2,8 +2,8 @@
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item" *ngFor="let menuItem of menuItems">
       <a class="nav-link" [href]="menuItem.url">
-        <mat-icon>dashboard</mat-icon>
-        <span>{{ menuItem.nombre }}</span>
+        <img style="padding: 1em" [src]="'../../../assets/images/' + menuItem.nombre + '.svg'" alt="Editar" class="icono-editar">
+        <span> {{ menuItem.nombre }}</span>
       </a>
     </li>
   </ul>

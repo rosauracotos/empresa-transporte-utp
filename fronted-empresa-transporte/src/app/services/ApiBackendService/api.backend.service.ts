@@ -104,6 +104,13 @@ export class ApiBackendService {
     return this.http.get<any>(environment.apiUrl +`api/estadoCivil/all`, { headers: headers });
   }
 
+  obtenerTurnos(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/turno/all`, { headers: headers });
+  }
+
   obtenerDepartamentos(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -313,6 +320,15 @@ export class ApiBackendService {
       'Content-Type': 'application/json'
     });
     return this.http.post<any>(environment.apiUrl +`api/colaborador/busquedaPagina`, body, { headers: headers });
+  }
+
+  guardarTurnos(bodyTurnos: any): Observable<any> {
+
+    const body = bodyTurnos;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(environment.apiUrl +`api/colaboradorHorario/guardarTurnos`, body, { headers: headers });
   }
 
 }

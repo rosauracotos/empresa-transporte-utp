@@ -20,6 +20,7 @@ import empresaTransporte.utp.servicio.ColaboradorService;
 import empresaTransporte.utp.servicio.UsuarioService;
 import empresaTransporte.utp.util.RespuestaControlador;
 import empresaTransporte.utp.util.dto.LoginRequestDTO;
+import empresaTransporte.utp.util.dto.LoginResponseDTO;
 import empresaTransporte.utp.util.dto.ObjetosMenuResponseDTO;
 import empresaTransporte.utp.util.enums.CargoEnum;
 import empresaTransporte.utp.util.enums.PerfilEnum;
@@ -118,7 +119,11 @@ public class UsuarioServiceImpl implements UsuarioService {
             if (claveUsuario != null) {
                 if (claveUsuario.getPassword().equals(loginRequestDTO.getPassword())) {
                     List<ObjetosMenuResponseDTO> listado = obtenerMenuUsuarioLogueado(usuario);
-                    respuestaControlador = RespuestaControlador.obtenerRespuestaExitoConExtraInfo(listado);
+                    LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+                    loginResponseDTO.setUsuarioIdLogueado(usuario.getId());
+                    loginResponseDTO.setNombreUsuarioLogueado(usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno() + " " + usuario.getNombre());
+                    loginResponseDTO.setDetalle(listado);
+                    respuestaControlador = RespuestaControlador.obtenerRespuestaExitoConExtraInfo(loginResponseDTO);
                 } else {
                     respuestaControlador = RespuestaControlador.obtenerRespuestaDeError(mensajeError);
                 }

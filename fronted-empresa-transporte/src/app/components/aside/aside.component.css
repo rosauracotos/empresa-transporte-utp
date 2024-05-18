@@ -158,3 +158,8 @@
 a {
   text-decoration: none;
 }
+
+.icono-editar {
+  width: 24px; /* Establece el ancho deseado */
+  height: 24px; /* Establece la altura deseada */
+}

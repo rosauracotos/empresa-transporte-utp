@@ -5,6 +5,7 @@ export class ColaboradorDto {
   cargo: string;
   persona: string;
   grupolaboral: string;
+  seleccionado: boolean;
 
   constructor(data:any) {
     this.estadoempleado = data.estadoempleado;
@@ -13,5 +14,6 @@ export class ColaboradorDto {
     this.cargo = data.cargo;
     this.persona = data.persona;
     this.grupolaboral = data.grupolaboral;
+    this.seleccionado = data.seleccionado;
   }
 }

@@ -32,7 +32,9 @@ export class LoginComponent {
         if (Utilidades.dataDeServerEsCorrecta(response)) {
           this.sweetAlertService.showAlertSuccess("Login exitoso");
           this.localStorageService.setItem('isAuthenticated', 'true');
-          this.localStorageService.setItem('menuData', response.extraInfo);
+          this.localStorageService.setItem('menuData', response.extraInfo.detalle);
+          this.localStorageService.setItem('usuarioIdLogueado', response.extraInfo.usuarioIdLogueado);
+          this.localStorageService.setItem('nombreUsuarioLogueado', response.extraInfo.nombreUsuarioLogueado);
           this.router.navigate(['/inicio']);
         } else {
           this.sweetAlertService.showAlertError(response.mensaje);

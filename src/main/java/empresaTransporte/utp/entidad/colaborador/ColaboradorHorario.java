@@ -9,13 +9,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "colaboradorhorario", schema = "colaborador")
@@ -31,8 +35,9 @@ public class ColaboradorHorario implements Serializable {
     @Column(name = "coh_dialab")
     private LocalDate diaLaboral;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "coh_fecreg")
-    private Timestamp fechaRegistro;
+    private LocalDateTime fechaRegistro;
 
     @Column(name = "coh_activo")
     private Boolean estado;
@@ -44,4 +49,10 @@ public class ColaboradorHorario implements Serializable {
     @ManyToOne
     @JoinColumn(name = "tur_id")
     private Turno turno;
+
+    @PrePersist
+    protected void onCreate() {
+        fechaRegistro = LocalDateTime.now();
+        estado = true;
+    }
 }
