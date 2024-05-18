@@ -1,10 +1,13 @@
 package empresaTransporte.utp.controlador;
 
+import empresaTransporte.utp.entidad.area.AreaClasificacion;
 import empresaTransporte.utp.entidad.colaborador.Colaborador;
+import empresaTransporte.utp.entidad.master.EstadoEmpleado;
 import empresaTransporte.utp.servicio.ColaboradorService;
 import empresaTransporte.utp.util.RespuestaControlador;
 import empresaTransporte.utp.util.dto.ColaboradorBusquedaRequestDTO;
 import empresaTransporte.utp.util.dto.ColaboradorBusquedaResponseDTO;
+import empresaTransporte.utp.util.enums.EstadoEmpleadoEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +34,11 @@ public class ColaboradorController {
         return ResponseEntity.ok(colaboradorService.listarColaboradoresActivos());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerAreaClasificacionPorId(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(colaboradorService.getById(id));
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> guardar (@RequestBody Colaborador colaborador){
         try {
@@ -55,17 +63,26 @@ public class ColaboradorController {
             colaboradorDb.setNumeroRuc(newColaborador.getNumeroRuc());
             colaboradorDb.setDireccion(newColaborador.getDireccion());
             colaboradorDb.setCorreo(newColaborador.getCorreo());
-            colaboradorDb.setFechaIngreso(newColaborador.getFechaIngreso());
             colaboradorDb.setTipoDocumento(newColaborador.getTipoDocumento());
             colaboradorDb.setTipoGenero(newColaborador.getTipoGenero());
             colaboradorDb.setEstadoCivil(newColaborador.getEstadoCivil());
-            colaboradorDb.setEstadoEmpleado(newColaborador.getEstadoEmpleado());
             colaboradorDb.setDistrito(newColaborador.getDistrito());
-
-            colaboradorService.actualizar(colaboradorDb);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+            RespuestaControlador rc = colaboradorService.actualizar(colaboradorDb);
+            return ResponseEntity.ok(rc);
         }
         return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/cesar/{idColaborador}")
+    public ResponseEntity<?> cesar(@PathVariable Long idColaborador) {
+        RespuestaControlador rc = colaboradorService.cesarColaborador(idColaborador);
+        return ResponseEntity.ok(rc);
+    }
+
+    @PutMapping("/anular/{idColaborador}")
+    public ResponseEntity<?> anular(@PathVariable Long idColaborador) {
+        RespuestaControlador rc = colaboradorService.anularColaborador(idColaborador);
+        return ResponseEntity.ok(rc);
     }
 
     @DeleteMapping("/eliminar/{id}")

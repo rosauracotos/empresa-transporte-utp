@@ -3,6 +3,7 @@ import {ApiBackendService} from "../../services/ApiBackendService/api.backend.se
 import {SweetAlertService} from "../../services/SweetAlertService/sweet.alert.service";
 import {LocalStorageService} from "../../services/LocalStorageService/local.storage.service";
 import {Router} from "@angular/router";
+import {Utilidades} from "../../../utils/utilidades";
 
 @Component({
   selector: 'app-personal-datos-laborales',
@@ -10,8 +11,8 @@ import {Router} from "@angular/router";
   styleUrl: './personal-datos-laborales.component.css'
 })
 export class PersonalDatosLaboralesComponent {
-
-
+  colaboradorId: any;
+  colaboradorLaboralId: any;
 
   numeroCuenta: string = '';
   numeroCupss: string = '';
@@ -94,22 +95,66 @@ export class PersonalDatosLaboralesComponent {
         this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
       }
     );
+    this.colaboradorId = this.localStorageService.getItem("colaboradorId");
+    if (!Utilidades.esNullOUndefinedoVacio(this.colaboradorId)) {
+      this.obtenerDatosColaboradorLaborales(this.colaboradorId);
+    }
   }
 
-  onSubmit() {
-    let colaboradorId = this.localStorageService.getItem('colaboradorId');
-    this.apiBackendService.guardarColaboradorLaboral(this.numeroCupss, this.numeroCuenta, colaboradorId,
-      this.selectedComision, this.selectedSede, this.selectedCondicionLaboral, this.selectedArea,
-      this.selectedRegimenPensionario, this.selectedCargo, this.selectedBanco).subscribe(
-      (response) =>{
-        this.sweetAlertService.showAlertSuccess(response.mensaje);
-        this.localStorageService.removeItem('colaboradorId');
-        this.router.navigate(['/personal'])
+  obtenerDatosColaboradorLaborales(colaboradorId: number) {
+    this.apiBackendService.obtenerColaboradorLaboralesPorId(colaboradorId).subscribe(
+      (response) => {
+        this.colaboradorLaboralId = response.id;
+        this.numeroCuenta = response.numeroCuenta;
+        this.numeroCupss = response.numCupss;
+        this.selectedCondicionLaboral = response.grupoLaboral.id;
+        this.selectedArea = response.areaDenominacion.id;
+        this.selectedBanco = response.banco.id;
+        this.selectedRegimenPensionario = response.regimenPensionario.id;
+        this.selectedComision = response.comisionafp.id;
+        this.selectedSede = response.sede.id;
+        this.selectedCargo = response.cargo.id;
       },
       (error) => {
         this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
       }
     );
+  }
+
+
+  onSubmit() {
+    let colaboradorId = this.localStorageService.getItem('colaboradorId');
+    if (!Utilidades.esNullOUndefinedoVacio(this.colaboradorLaboralId)) {
+      this.apiBackendService.editarColaboradorLaboral(this.colaboradorLaboralId, this.numeroCupss, this.numeroCuenta,
+        this.selectedComision, this.selectedSede, this.selectedCondicionLaboral, this.selectedArea,
+        this.selectedRegimenPensionario, this.selectedCargo, this.selectedBanco).subscribe(
+        (response) =>{
+          this.sweetAlertService.showAlertSuccess(response.mensaje);
+          this.localStorageService.removeItem('colaboradorId');
+          this.router.navigate(['/personal'])
+        },
+        (error) => {
+          this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
+        }
+      );
+    } else {
+      this.apiBackendService.guardarColaboradorLaboral(this.numeroCupss, this.numeroCuenta, colaboradorId,
+        this.selectedComision, this.selectedSede, this.selectedCondicionLaboral, this.selectedArea,
+        this.selectedRegimenPensionario, this.selectedCargo, this.selectedBanco).subscribe(
+        (response) =>{
+          this.sweetAlertService.showAlertSuccess(response.mensaje);
+          this.localStorageService.removeItem('colaboradorId');
+          this.router.navigate(['/personal'])
+        },
+        (error) => {
+          this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
+        }
+      );
+    }
+  }
+
+  cancelar() {
+    this.router.navigate(['/personal'])
   }
 
 }

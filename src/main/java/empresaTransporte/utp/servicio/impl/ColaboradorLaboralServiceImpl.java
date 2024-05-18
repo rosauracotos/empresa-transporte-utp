@@ -39,11 +39,21 @@ public class ColaboradorLaboralServiceImpl implements ColaboradorLabService {
 
     @Override
     public RespuestaControlador actualizar(ColaboradorLaborales colaboradorLaborales) {
-        return null;
+        RespuestaControlador respuestaControlador;
+        colaboradorLaboralesRepository.save(colaboradorLaborales);
+        respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoActualizar("Colaborador Laboral");
+        respuestaControlador.setExtraInfo(colaboradorLaborales.getId());
+        return respuestaControlador;
     }
 
     @Override
-    public ColaboradorLaborales findById(Integer idColaboradorLab) {
-        return null;
+    public ColaboradorLaborales findById(Long idColaboradorLab) {
+        return colaboradorLaboralesRepository.findById(idColaboradorLab).get();
     }
+
+    @Override
+    public ColaboradorLaborales getById(Long id) {
+        return colaboradorLaboralesRepository.findByColaboradorIdAndEstadoTrue(id);
+    }
+
 }

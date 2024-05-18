@@ -1,6 +1,8 @@
 <app-menu></app-menu>
 <app-aside></app-aside>
 <div class="main-centrado">
+  <br>
+  <br>
   <div class="pagetitle container-center">
     <h1>DATOS LABORALES DEL EMPLEADO</h1>
   </div>
@@ -86,6 +88,8 @@
           </mat-form-field>
         </div>
         <button mat-flat-button [disabled]="!formPersonalLaboralForm.form.valid" color="primary">Guardar</button>
+        <span style="margin-left: 10px; margin-right: 10px;"></span>
+        <button mat-flat-button color="warn" (click)="cancelar()">Cancelar</button>
       </form>
     </mat-card-content>
   </mat-card>

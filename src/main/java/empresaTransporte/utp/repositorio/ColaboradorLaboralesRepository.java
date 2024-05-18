@@ -15,6 +15,8 @@ public interface ColaboradorLaboralesRepository extends JpaRepository<Colaborado
 
     List<ColaboradorLaborales> findColabLaboralByEstadoTrue();
 
+    ColaboradorLaborales findByColaboradorIdAndEstadoTrue(Long colaboradorId);
+
     @Query("SELECT cl FROM ColaboradorLaborales cl " +
             "WHERE cl.colaborador.id = :colaboradorId " +
             "AND cl.estado = true " +

@@ -24,4 +24,13 @@ export class SweetAlertService {
     }
     return Swal.fire(options);
   }
+
+  showAlertPregunta(pregunta:string, textoBotonAceptar: string): Promise<any> {
+    let options:SweetAlertOptions = {
+      title: pregunta,
+      confirmButtonText: textoBotonAceptar,
+      showCancelButton: true,
+    }
+    return Swal.fire(options);
+  }
 }
