@@ -19,6 +19,8 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> 
 
     List<Colaborador> findBancoByActivoTrue();
 
+    List<Colaborador> findByIdIn(List<Long> ids);
+
     @Query(value = "SELECT clb.col_id as colaboradorId, CONCAT(clb.col_apepat,' ',clb.col_apemat,' ',clb.col_nombre) as persona, " +
             "clb.col_numdoi as numDocumento, glb.grl_descri as grupoLaboral, carg.crg_descri as cargo, eemp.ese_descri as estadoEmpleado " +
             "FROM colaborador.colaborador clb " +

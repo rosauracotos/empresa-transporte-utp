@@ -14,5 +14,7 @@ public interface ColaboradorLabService {
 
     public RespuestaControlador actualizar (ColaboradorLaborales colaboradorLaborales);
 
-    public abstract ColaboradorLaborales findById(Integer idColaboradorLab);
+    public ColaboradorLaborales findById(Long idColaboradorLab);
+
+    ColaboradorLaborales getById(Long id);
 }

@@ -33,6 +33,8 @@ export class AuthService {
   logout() {
     this.localStorageService.setItem('isAuthenticated', 'false');
     this.localStorageService.removeItem('menuData');
+    this.localStorageService.removeItem('numeroIdentificacion');
+    this.localStorageService.removeItem('nombreUsuarioLogueado');
     this.router.navigate(['/']);
   }
 

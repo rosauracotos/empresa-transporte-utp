@@ -1,6 +1,8 @@
 <app-menu></app-menu>
 <app-aside></app-aside>
 <div class="main-centrado">
+  <br>
+  <br>
   <div class="pagetitle container-center">
     <h1>REGISTRO/EDICIÓN DE EMPLEADOS</h1>
   </div>
@@ -70,7 +72,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
             <mat-label>Número Celular</mat-label>
-            <input matInput placeholder="Número Celular" [(ngModel)]="numeroCelular" required name="numeroCelular" type="text" pattern="\d*" maxlength="10">
+            <input matInput placeholder="Número Celular" [(ngModel)]="numeroCelular" required name="numeroCelular" type="text" pattern="\d*" maxlength="9">
           </mat-form-field>
         </div>
         <div>
@@ -111,7 +113,9 @@
             <input matInput placeholder="Email" [(ngModel)]="email" email name="email" type="text" required maxlength="300">
           </mat-form-field>
         </div>
-        <button mat-flat-button [disabled]="!formPersonalForm.form.valid" color="primary">Guardar</button>
+        <button mat-flat-button *ngIf="!ocultarBotonGuardar" [disabled]="!formPersonalForm.form.valid" color="primary">Guardar</button>
+        <span style="margin-left: 10px; margin-right: 10px;"></span>
+        <button mat-flat-button color="warn" (click)="cancelar()">Cancelar</button>
       </form>
     </mat-card-content>
   </mat-card>

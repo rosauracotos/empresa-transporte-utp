@@ -5,6 +5,7 @@ import {Utilidades} from "../../../utils/utilidades";
 import {MatTableDataSource} from "@angular/material/table";
 import {ColaboradorDto} from "../../models/ColaboradorDto";
 import {Router} from "@angular/router";
+import {LocalStorageService} from "../../services/LocalStorageService/local.storage.service";
 
 @Component({
   selector: 'app-personal',
@@ -32,6 +33,7 @@ export class PersonalComponent {
 
   constructor(private apiBackendService: ApiBackendService,
               private sweetAlertService: SweetAlertService,
+              private localStorageService: LocalStorageService,
               private router: Router) {}
 
   ngOnInit() {
@@ -79,6 +81,7 @@ export class PersonalComponent {
         this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
       }
     );
+    this.onSubmit();
   }
 
   onSubmit() {
@@ -96,7 +99,70 @@ export class PersonalComponent {
   }
 
   redirectNuevoPersonal() {
+    this.localStorageService.removeItem('colaboradorId');
+    this.localStorageService.setItem('ocultarBotonGuardar', false);
     this.router.navigate(['/personal-formulario']);
+  }
+
+  editarPersonal(colaborador:ColaboradorDto) {
+    console.log(colaborador);
+    this.localStorageService.setItem('colaboradorId', colaborador.colaboradorid);
+    this.localStorageService.setItem('ocultarBotonGuardar', false);
+    this.router.navigate(['/personal-formulario'])
+  }
+
+  visualizarPersonal(colaborador:ColaboradorDto) {
+    console.log(colaborador);
+    this.localStorageService.setItem('colaboradorId', colaborador.colaboradorid);
+    this.localStorageService.setItem('ocultarBotonGuardar', true);
+    this.router.navigate(['/personal-formulario'])
+  }
+
+  editarPersonalLaborales(colaborador:ColaboradorDto) {
+    this.localStorageService.setItem('colaboradorId', colaborador.colaboradorid);
+    this.router.navigate(['/personal-laborales-formulario'])
+  }
+
+  anularPersonal(colaborador:ColaboradorDto) {
+    this.sweetAlertService.showAlertPregunta("¿Desea anular al colaborador?", "Aceptar")
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.apiBackendService.anularColaborador(colaborador.colaboradorid).subscribe(
+            (response) =>{
+              if (Utilidades.dataDeServerEsCorrecta(response)) {
+                this.sweetAlertService.showAlertSuccess(response.mensaje);
+              } else {
+                this.sweetAlertService.showAlertError(response.mensaje);
+              }
+              this.onSubmit();
+            },
+            (error) => {
+              this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
+            }
+          );
+        }
+      });
+  }
+
+  cesarPersonal(colaborador:ColaboradorDto) {
+    this.sweetAlertService.showAlertPregunta("¿Desea cesar al colaborador?", "Aceptar")
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.apiBackendService.cesarColaborador(colaborador.colaboradorid).subscribe(
+            (response) =>{
+              if (Utilidades.dataDeServerEsCorrecta(response)) {
+                this.sweetAlertService.showAlertSuccess(response.mensaje);
+              } else {
+                this.sweetAlertService.showAlertError(response.mensaje);
+              }
+              this.onSubmit();
+            },
+            (error) => {
+              this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
+            }
+          );
+        }
+      });
   }
 
 }

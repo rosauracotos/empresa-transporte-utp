@@ -1,0 +1,38 @@
+.custom-mat-select {
+  width: 18em;
+  padding: 0px 30px 0px 0px;
+}
+
+.custom-mat-select2 {
+  padding: 0px 3px 0px 0px;
+}
+
+.icono-editar {
+  width: 24px; /* Establece el ancho deseado */
+  height: 24px; /* Establece la altura deseada */
+}
+
+.acciones-container {
+  display: flex; /* Establece la presentación de los elementos en línea */
+}
+
+.acciones-container a {
+  margin-right: 0px; /* Ajusta el espacio entre los botones */
+}
+
+.container-botones {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.container-botones-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.spacer {
+  flex-grow: 1;
+}

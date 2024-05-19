@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {LocalStorageService} from "../LocalStorageService/local.storage.service";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/enviroment";
@@ -104,6 +104,13 @@ export class ApiBackendService {
     return this.http.get<any>(environment.apiUrl +`api/estadoCivil/all`, { headers: headers });
   }
 
+  obtenerTurnos(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/turno/all`, { headers: headers });
+  }
+
   obtenerDepartamentos(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -123,6 +130,20 @@ export class ApiBackendService {
       'Content-Type': 'application/json'
     });
     return this.http.get<any>(environment.apiUrl +`api/ubigeoDistrito/provincia/`+ provinciaId, { headers: headers });
+  }
+
+  obtenerColaboradorPorId(colaboradorId: number):Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/colaborador/`+ colaboradorId, { headers: headers });
+  }
+
+  obtenerColaboradorLaboralesPorId(colaboradorId: number):Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/colaboradorLaboral/obtenerPorColaborador/`+ colaboradorId, { headers: headers });
   }
 
   guardarColaborador(apellidoPaterno: string, apellidoMaterno: string, nombre: string, numeroIdentificacion: string,
@@ -156,6 +177,53 @@ export class ApiBackendService {
       'Content-Type': 'application/json'
     });
     return this.http.post<any>(environment.apiUrl +`api/colaborador/guardar`, body, { headers: headers });
+  }
+
+  editarColaborador(apellidoPaterno: string, apellidoMaterno: string, nombre: string, numeroIdentificacion: string,
+                     fechaNacimiento: string, celular: string, direccion: string, correo: string, tipoDocumentoId: number,
+                     tipoGeneroId: number, estadoCiviloId: number, distritoId: number, colaboradorId: number): Observable<any> {
+
+    const body = {
+      apellidoPaterno: apellidoPaterno,
+      apellidoMaterno: apellidoMaterno,
+      nombre: nombre,
+      numeroIdentificacion: numeroIdentificacion,
+      fechaNacimiento: fechaNacimiento,
+      celular: celular,
+      direccion: direccion,
+      correo: correo,
+      tipoDocumento: {
+        id :tipoDocumentoId
+      },
+      tipoGenero: {
+        id :tipoGeneroId
+      },
+      estadoCivil: {
+        id :estadoCiviloId
+      },
+      distrito: {
+        id :distritoId
+      }
+    };
+    console.log(body);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<any>(environment.apiUrl +`api/colaborador/editar/` + colaboradorId, body, { headers: headers });
+  }
+
+  cesarColaborador(colaboradorId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<any>(environment.apiUrl +`api/colaborador/cesar/` + colaboradorId, null, { headers: headers });
+  }
+
+  anularColaborador(colaboradorId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<any>(environment.apiUrl +`api/colaborador/anular/` + colaboradorId, null, { headers: headers });
   }
 
   guardarColaboradorLaboral(numCupss: string, numeroCuenta: string,
@@ -197,6 +265,41 @@ export class ApiBackendService {
     return this.http.post<any>(environment.apiUrl +`api/colaboradorLaboral/guardar`, body, { headers: headers });
   }
 
+  editarColaboradorLaboral( colaboradorLaboralId: number, numCupss: string, numeroCuenta: string, comisionafpId: number,
+                            sedeId: number, grupoLaboralId: number, areaDenominacionId: number,
+                            regimenPensionarioId: number, cargoId:number, bancoId: number): Observable<any> {
+
+    const body = {
+      numCupss: numCupss,
+      numeroCuenta: numeroCuenta,
+      sede: {
+        id :sedeId
+      },
+      cargo: {
+        id :cargoId
+      },
+      grupoLaboral: {
+        id :grupoLaboralId
+      },
+      areaDenominacion: {
+        id :areaDenominacionId
+      },
+      banco: {
+        id :bancoId
+      },
+      regimenPensionario: {
+        id :regimenPensionarioId
+      },
+      comisionafp: {
+        id: comisionafpId
+      }
+    };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<any>(environment.apiUrl +`api/colaboradorLaboral/editar/` + colaboradorLaboralId, body, { headers: headers });
+  }
+
   busquedaPaginadaPersonal(numeroDocumento: string, nombre:string, apellidoPaterno: string, apellidoMaterno:string ,
                            selectedArea: any, selectedCargo:any, selectedTipoDocumento: any, selectedEstadoEmpleado: any,
                            selectedGrupoLaboral: any): Observable<any> {
@@ -217,6 +320,32 @@ export class ApiBackendService {
       'Content-Type': 'application/json'
     });
     return this.http.post<any>(environment.apiUrl +`api/colaborador/busquedaPagina`, body, { headers: headers });
+  }
+
+  guardarTurnos(bodyTurnos: any): Observable<any> {
+
+    const body = bodyTurnos;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(environment.apiUrl +`api/colaboradorHorario/guardarTurnos`, body, { headers: headers });
+  }
+
+  obtenerListaPDFs(numeroIdentificacion: string, anio: number): Observable<any> {
+    const params = new HttpParams()
+      .set('dni', numeroIdentificacion)
+      .set('year', anio);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/boletasPago/pdfs-info`, { params: params, headers: headers });
+  }
+
+  visualizarPDF(nombreArchivo: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/boletasPago/pdf/` + nombreArchivo, {headers: headers, responseType: 'blob' as 'json' });
   }
 
 }

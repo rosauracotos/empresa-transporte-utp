@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,9 +32,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import {
-  PersonalDatosLaboralesComponent
-} from "./components/personal-datos-laborales/personal-datos-laborales.component";
+import {PersonalDatosLaboralesComponent} from "./components/personal-datos-laborales/personal-datos-laborales.component";
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import {NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "red",
@@ -77,10 +77,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     TurnosComponent,
     PersonalDatosLaboralesComponent,
     PersonalFormularioComponent
-   /* LoginComponent,
-    InicioComponent,
-    MenuComponent,
-    DetalleComponent*/
   ],
   imports: [
     BrowserModule,
@@ -103,7 +99,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatExpansionModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCheckbox,
+    MatCheckboxModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     {

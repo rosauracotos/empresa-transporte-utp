@@ -22,4 +22,10 @@ public interface ColaboradorService {
 
     ColaboradorBusquedaResponseDTO busquedaPaginada(ColaboradorBusquedaRequestDTO dto);
 
+    Colaborador getById(Long colaboradorId);
+
+    RespuestaControlador cesarColaborador(Long colaboradorId);
+
+    RespuestaControlador anularColaborador(Long colaboradorId);
+
 }

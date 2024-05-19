@@ -1,8 +1,10 @@
 package empresaTransporte.utp.servicio.impl;
 
+import empresaTransporte.utp.entidad.Seguridad.Usuarios;
 import empresaTransporte.utp.entidad.colaborador.Colaborador;
 import empresaTransporte.utp.entidad.master.EstadoEmpleado;
 import empresaTransporte.utp.repositorio.ColaboradorRepository;
+import empresaTransporte.utp.repositorio.UsuariosRepository;
 import empresaTransporte.utp.servicio.ColaboradorService;
 import empresaTransporte.utp.servicio.UsuarioService;
 import empresaTransporte.utp.util.RespuestaControlador;
@@ -25,6 +27,9 @@ public class ColaboradorServiceImpl implements ColaboradorService {
 
     @Autowired
     private ColaboradorRepository colaboradorRepository;
+
+    @Autowired
+    private UsuariosRepository usuariosRepository;
 
     @Autowired
     RespuestaControladorServicio respuestaControladorServicio;
@@ -54,6 +59,40 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         RespuestaControlador respuestaControlador;
         colaboradorRepository.save(colaborador);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoActualizar("Colaborador");
+        respuestaControlador.setExtraInfo(colaborador.getId());
+        return respuestaControlador;
+    }
+
+    @Override
+    public RespuestaControlador cesarColaborador(Long colaboradorId) {
+        RespuestaControlador respuestaControlador;
+
+        EstadoEmpleado estadoEmpleadoNuevo = new EstadoEmpleado();
+        estadoEmpleadoNuevo.setId(EstadoEmpleadoEnum.CESADO.getId());
+
+        Colaborador colaboradorDb = findById(colaboradorId);
+        if (colaboradorDb.getEstadoEmpleado().getId().equals(EstadoEmpleadoEnum.CONTRATADO.getId())) {
+            colaboradorDb.setEstadoEmpleado(estadoEmpleadoNuevo);
+            colaboradorRepository.save(colaboradorDb);
+            respuestaControlador = RespuestaControlador.obtenerRespuestaDeExito("Colaborador Cesado correctamente");
+        } else {
+            respuestaControlador = RespuestaControlador.obtenerRespuestaDeError("No se puede actualizar, colaborador ya se encuentra en estado " + colaboradorDb.getEstadoEmpleado().getDescripcion());
+        }
+        return respuestaControlador;
+    }
+
+    @Override
+    public RespuestaControlador anularColaborador(Long colaboradorId) {
+        RespuestaControlador respuestaControlador;
+        Colaborador colaboradorDb = findById(colaboradorId);
+        colaboradorDb.setActivo(Boolean.FALSE);
+        colaboradorRepository.save(colaboradorDb);
+        Usuarios usuario = usuariosRepository.findByLogin(colaboradorDb.getNumeroIdentificacion());
+        if (usuario != null) {
+            usuario.setActivo(Boolean.FALSE);
+            usuariosRepository.save(usuario);
+        }
+        respuestaControlador = RespuestaControlador.obtenerRespuestaDeExito("Colaborador anulado correctamente");
         return respuestaControlador;
     }
 
@@ -82,6 +121,11 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         responseDTO.setTotalRegistros(cantidadTotal);
         responseDTO.setCantidadPorPagina( dto.getMax());
         return responseDTO;
+    }
+
+    @Override
+    public Colaborador getById(Long colaboradorId) {
+        return colaboradorRepository.findById(colaboradorId).get();
     }
 
     private String generarCodigoUsuario (){
