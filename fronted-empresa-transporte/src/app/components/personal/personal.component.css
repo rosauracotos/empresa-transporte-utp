@@ -1,5 +1,16 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-wrapper {
+  flex-basis: calc(33.33% - 20px); /* Tamaño deseado de cada tarjeta (33.33% para 3 tarjetas por fila) */
+  margin-bottom: 20px; /* Espacio entre filas */
+}
+
 .custom-mat-select {
-  width: 18em;
+  width: 100%;
   padding: 0px 30px 0px 0px;
 }
 

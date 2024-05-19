@@ -12,80 +12,97 @@
   <mat-card>
     <mat-card-content>
       <form #formPersonalLaboralForm="ngForm" (ngSubmit)="onSubmit()">
-        <div>
-          <mat-form-field class="example-full-width custom-mat-select3">
-            <mat-label>Condicion Laboral</mat-label>
-            <mat-select [(ngModel)]="selectedCondicionLaboral" name="condicionLaboral" required>
-              @for (condicionLaboral of condicionLaboral; track condicionLaboral) {
-                <mat-option [value]="condicionLaboral.id">{{condicionLaboral.descripcion}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-
+        <div class="card-container">
+          <div class="card-wrapper-total">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Condicion Laboral</mat-label>
+              <mat-select [(ngModel)]="selectedCondicionLaboral" name="condicionLaboral" required>
+                @for (condicionLaboral of condicionLaboral; track condicionLaboral) {
+                  <mat-option [value]="condicionLaboral.id">{{condicionLaboral.descripcion}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-        <div>
-          <mat-form-field class="example-full-width custom-mat-select3">
-            <mat-label>Area</mat-label>
-            <mat-select [(ngModel)]="selectedArea" name="area" required>
-              @for (area of area; track area) {
-                <mat-option [value]="area.id">{{area.descripcion}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+        <div class="card-container">
+          <div class="card-wrapper-total">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Area</mat-label>
+              <mat-select [(ngModel)]="selectedArea" name="area" required>
+                @for (area of area; track area) {
+                  <mat-option [value]="area.id">{{area.descripcion}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-        <div>
-          <mat-form-field class="example-full-width custom-mat-select4">
-            <mat-label>Sede</mat-label>
-            <mat-select [(ngModel)]="selectedSede" name="sede" required>
-              @for (sede of sedes; track sede) {
-                <mat-option [value]="sede.id">{{sede.descripcion}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="example-full-width custom-mat-select4">
-            <mat-label>Cargo</mat-label>
-            <mat-select [(ngModel)]="selectedCargo" name="cargo" required>
-              @for (cargo of cargos; track cargo) {
-                <mat-option [value]="cargo.id">{{cargo.descripcion}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+        <div class="card-container">
+          <div class="card-wrapper2">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Sede</mat-label>
+              <mat-select [(ngModel)]="selectedSede" name="sede" required>
+                @for (sede of sedes; track sede) {
+                  <mat-option [value]="sede.id">{{sede.descripcion}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="card-wrapper2">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Cargo</mat-label>
+              <mat-select [(ngModel)]="selectedCargo" name="cargo" required>
+                @for (cargo of cargos; track cargo) {
+                  <mat-option [value]="cargo.id">{{cargo.descripcion}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-        <div>
-          <mat-form-field class="example-full-width custom-mat-select4">
-            <mat-label>Banco</mat-label>
-            <mat-select [(ngModel)]="selectedBanco" name="tipoDocumento" required>
-              @for (banco of banco; track banco) {
-                <mat-option [value]="banco.id">{{banco.nombre}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="example-full-width custom-mat-select4">
-            <mat-label>Número de Cuenta</mat-label>
-            <input matInput placeholder="Número Cuenta" required [(ngModel)]="numeroCuenta" name="numeroCuenta" type="text" pattern="\d*" maxlength="12">
-          </mat-form-field>
+        <div class="card-container">
+          <div class="card-wrapper2">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Banco</mat-label>
+              <mat-select [(ngModel)]="selectedBanco" name="tipoDocumento" required>
+                @for (banco of banco; track banco) {
+                  <mat-option [value]="banco.id">{{banco.nombre}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="card-wrapper2">
+            <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+              <mat-label>Número de Cuenta</mat-label>
+              <input matInput placeholder="Número Cuenta" required [(ngModel)]="numeroCuenta" name="numeroCuenta" type="text" pattern="\d*" maxlength="12">
+            </mat-form-field>
+          </div>
         </div>
-        <div>
-          <mat-form-field class="example-full-width custom-mat-select">
-            <mat-label>Regimen Pensionario</mat-label>
-            <mat-select [(ngModel)]="selectedRegimenPensionario" name="regimenPensionario" required>
-              @for (regimenPensionario of regimenPensionario; track regimenPensionario) {
-                <mat-option [value]="regimenPensionario.id">{{regimenPensionario.descripcion}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="example-full-width custom-mat-select">
-            <mat-label>Comision</mat-label>
-            <mat-select [(ngModel)]="selectedComision" name="comision" required>
-              @for (comision of comision; track comision) {
-                <mat-option [value]="comision.id">{{comision.descripcion}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
-            <mat-label>Número CUPSS</mat-label>
-            <input matInput placeholder="Número Cupss" [(ngModel)]="numeroCupss" required name="numeroCupss" type="text" pattern="\d*" maxlength="12">
-          </mat-form-field>
+        <div class="card-container">
+          <div class="card-wrapper">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Regimen Pensionario</mat-label>
+              <mat-select [(ngModel)]="selectedRegimenPensionario" name="regimenPensionario" required>
+                @for (regimenPensionario of regimenPensionario; track regimenPensionario) {
+                  <mat-option [value]="regimenPensionario.id">{{regimenPensionario.descripcion}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="card-wrapper">
+            <mat-form-field class="example-full-width custom-mat-select">
+              <mat-label>Comision</mat-label>
+              <mat-select [(ngModel)]="selectedComision" name="comision" required>
+                @for (comision of comision; track comision) {
+                  <mat-option [value]="comision.id">{{comision.descripcion}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="card-wrapper">
+            <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
+              <mat-label>Número CUPSS</mat-label>
+              <input matInput placeholder="Número Cupss" [(ngModel)]="numeroCupss" required name="numeroCupss" type="text" pattern="\d*" maxlength="12">
+            </mat-form-field>
+          </div>
         </div>
         <button mat-flat-button [disabled]="!formPersonalLaboralForm.form.valid" color="primary">Guardar</button>
         <span style="margin-left: 10px; margin-right: 10px;"></span>
