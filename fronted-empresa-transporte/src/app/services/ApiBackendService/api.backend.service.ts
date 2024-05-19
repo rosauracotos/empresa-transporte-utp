@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {LocalStorageService} from "../LocalStorageService/local.storage.service";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/enviroment";
@@ -329,6 +329,23 @@ export class ApiBackendService {
       'Content-Type': 'application/json'
     });
     return this.http.post<any>(environment.apiUrl +`api/colaboradorHorario/guardarTurnos`, body, { headers: headers });
+  }
+
+  obtenerListaPDFs(numeroIdentificacion: string, anio: number): Observable<any> {
+    const params = new HttpParams()
+      .set('dni', numeroIdentificacion)
+      .set('year', anio);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/boletasPago/pdfs-info`, { params: params, headers: headers });
+  }
+
+  visualizarPDF(nombreArchivo: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any>(environment.apiUrl +`api/boletasPago/pdf/` + nombreArchivo, {headers: headers, responseType: 'blob' as 'json' });
   }
 
 }

@@ -9,8 +9,8 @@ import java.util.List;
 @Setter
 public class LoginResponseDTO {
 
-    private Long usuarioIdLogueado;
     private String nombreUsuarioLogueado;
+    private String numeroIdentificacionUsuarioLogueado;
     private List<ObjetosMenuResponseDTO> detalle;
 
 }

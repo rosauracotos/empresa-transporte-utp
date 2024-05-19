@@ -34,6 +34,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {PersonalDatosLaboralesComponent} from "./components/personal-datos-laborales/personal-datos-laborales.component";
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import {NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "bgsColor": "red",
@@ -100,7 +101,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatFormFieldModule,
     MatDatepickerModule,
     MatCheckbox,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     {

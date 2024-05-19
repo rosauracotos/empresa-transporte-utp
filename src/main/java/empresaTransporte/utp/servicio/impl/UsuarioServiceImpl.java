@@ -17,6 +17,7 @@ import empresaTransporte.utp.repositorio.PerfilUsuarioRepository;
 import empresaTransporte.utp.repositorio.UsuarioClaveRepository;
 import empresaTransporte.utp.repositorio.UsuariosRepository;
 import empresaTransporte.utp.servicio.ColaboradorService;
+import empresaTransporte.utp.servicio.EmailService;
 import empresaTransporte.utp.servicio.UsuarioService;
 import empresaTransporte.utp.util.RespuestaControlador;
 import empresaTransporte.utp.util.dto.LoginRequestDTO;
@@ -55,6 +56,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private ColaboradorService colaboradorService;
+
+    @Autowired
+    private EmailService emailService;
 
     // Caracteres que se pueden incluir en la clave
     private static final String CARACTERES = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[]";
@@ -107,6 +111,12 @@ public class UsuarioServiceImpl implements UsuarioService {
                 perfilUsuarioObjRepository.save(perfilUsuarioObj);
             }
         }
+        String mensaje = "Estimado(a) " + colaborador.getApellidoPaterno() + " " + colaborador.getApellidoMaterno() + " " + colaborador.getNombre() +
+                ", se le envían sus credenciales para el sistema: \n " +
+                " Login : " + colaborador.getNumeroIdentificacion() + "\n"+
+                " Contraseña : " + usuarioClave.getPassword();
+
+        emailService.enviarCorreo(colaborador.getCorreo(), "Credenciales Creadas", mensaje);
     }
 
     @Override
@@ -120,7 +130,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 if (claveUsuario.getPassword().equals(loginRequestDTO.getPassword())) {
                     List<ObjetosMenuResponseDTO> listado = obtenerMenuUsuarioLogueado(usuario);
                     LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
-                    loginResponseDTO.setUsuarioIdLogueado(usuario.getId());
+                    loginResponseDTO.setNumeroIdentificacionUsuarioLogueado(usuario.getLogin());
                     loginResponseDTO.setNombreUsuarioLogueado(usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno() + " " + usuario.getNombre());
                     loginResponseDTO.setDetalle(listado);
                     respuestaControlador = RespuestaControlador.obtenerRespuestaExitoConExtraInfo(loginResponseDTO);
