@@ -123,15 +123,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     public RespuestaControlador validarLogin(LoginRequestDTO loginRequestDTO) {
         final String mensajeError = "Credenciales incorrectas";
         RespuestaControlador respuestaControlador;
-        Usuarios usuario = usuariosRepository.findByLogin(loginRequestDTO.getUsuario());
+        Usuarios usuario = usuariosRepository.findByLoginAndActivoTrue(loginRequestDTO.getUsuario());
         if (usuario != null) {
             UsuarioClave claveUsuario = usuarioClaveRepository.findByUsuarioIdAndActivo(usuario.getId(), Boolean.TRUE);
             if (claveUsuario != null) {
                 if (claveUsuario.getPassword().equals(loginRequestDTO.getPassword())) {
+                    Colaborador colaborador = colaboradorService.obtenerPorNumeroIdentificacion(usuario.getLogin());
                     List<ObjetosMenuResponseDTO> listado = obtenerMenuUsuarioLogueado(usuario);
                     LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
                     loginResponseDTO.setNumeroIdentificacionUsuarioLogueado(usuario.getLogin());
-                    loginResponseDTO.setNombreUsuarioLogueado(usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno() + " " + usuario.getNombre());
+                    if (colaborador != null) {
+                        loginResponseDTO.setNombreUsuarioLogueado(colaborador.getApellidoPaterno() + " " + colaborador.getApellidoMaterno() + " " + colaborador.getNombre());
+                    }
                     loginResponseDTO.setDetalle(listado);
                     respuestaControlador = RespuestaControlador.obtenerRespuestaExitoConExtraInfo(loginResponseDTO);
                 } else {

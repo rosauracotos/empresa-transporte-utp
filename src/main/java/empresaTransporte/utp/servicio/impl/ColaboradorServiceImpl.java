@@ -97,6 +97,11 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     @Override
+    public Colaborador obtenerPorNumeroIdentificacion(String numeroIdentificacion) {
+        return colaboradorRepository.findByNumeroIdentificacionAndActivoTrue(numeroIdentificacion);
+    }
+
+    @Override
     public Colaborador findById(Long idColaborador) {
         return colaboradorRepository.findById(idColaborador).orElse(null);
     }
@@ -137,4 +142,6 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         return cadenaFormateada;
 
     }
+
+
 }

@@ -79,6 +79,8 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> 
             @Param("cargoId") Long cargoId,
             @Param("grupoLaboralId") Long grupoLaboralId);
 
+    Colaborador findByNumeroIdentificacionAndActivoTrue(String numeroIdentificacion);
+
 
 
 

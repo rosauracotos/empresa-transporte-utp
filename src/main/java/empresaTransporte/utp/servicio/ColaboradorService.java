@@ -28,4 +28,6 @@ public interface ColaboradorService {
 
     RespuestaControlador anularColaborador(Long colaboradorId);
 
+    Colaborador obtenerPorNumeroIdentificacion(String numeroIdentificacion);
+
 }
