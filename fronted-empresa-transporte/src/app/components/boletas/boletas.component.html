@@ -31,7 +31,7 @@
   </div>
   <div class="container">
     <div style="flex: 35%">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
         <ng-container matColumnDef="year">
           <th mat-header-cell *matHeaderCellDef> Año</th>
           <td mat-cell *matCellDef="let datos"> {{datos.year}} </td>

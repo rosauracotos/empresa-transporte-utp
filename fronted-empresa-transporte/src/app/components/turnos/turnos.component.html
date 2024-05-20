@@ -42,30 +42,7 @@
   <br>
   <div class="card-container">
     <div class="card-wrapper2">
-      <mat-form-field class="custom-mat-select">
-        <mat-label>Ingrese Rango Días</mat-label>
-        <mat-date-range-input [rangePicker]="picker" name="dateRange">
-          <input matStartDate placeholder="Start date" name="startDate" [(ngModel)]="startDate">
-          <input matEndDate placeholder="End date" name="endDate" [(ngModel)]="endDate">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
-    </div>
-    <div class="card-wrapper2">
-      <mat-form-field class="example-full-width custom-mat-select">
-        <mat-label>Turnos</mat-label>
-        <mat-select [(ngModel)]="selectedTurno" name="turno">
-          @for (turno of turnos; track turno) {
-            <mat-option [value]="turno.id">{{turno.abreviatura}}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="card-container">
-    <div class="card-wrapper1">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">
           <th mat-header-cell *matHeaderCellDef>
