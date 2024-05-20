@@ -40,3 +40,35 @@
 .spacer {
   flex-grow: 1;
 }
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table thead {
+   /* Color de fondo azul oscuro */
+}
+
+.custom-table th {
+  color: #e8e0e0; /* Color de la letra blanca */
+  padding: 16px; /* Espaciado interno */
+  text-align: center; /* Alinear texto a la izquierda */
+  background-color: #2252a9;
+}
+
+.custom-table td {
+  padding: 16px; /* Espaciado interno */
+  border-bottom: 1px solid #e0e0e0; /* Línea inferior */
+  text-align: center;
+}
+
+.custom-table .acciones-container a {
+  margin-right: 8px; /* Espacio entre los iconos de acción */
+}
+
+.icono-editar {
+  width: 24px; /* Establece el ancho deseado */
+  height: 24px; /* Establece la altura deseada */
+}
+
