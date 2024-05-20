@@ -1,9 +1,9 @@
 <body style="background: url('../../../assets/images/fondo-login.jpg') no-repeat  ; background-size: cover;">
-  <div class="login-container">
+  <div class="login-container full-page-div">
     <mat-card >
       <mat-card-content>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-          <h2>Inicio de sesión</h2>
+          <h2 class="titulo-sesion">Iniciar Sesión</h2>
           <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
             <input matInput placeholder="Usuario" [(ngModel)]="username" name="username" required type="text" pattern="\d*" maxlength="15">
