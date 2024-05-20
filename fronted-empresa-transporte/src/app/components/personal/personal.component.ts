@@ -92,7 +92,7 @@ export class PersonalComponent {
   onSubmit() {
     this.apiBackendService.busquedaPaginadaPersonal(this.numeroDocumento, this.nombre, this.apellidoPaterno,
       this.apellidoMaterno, this.selectedArea, this.selectedCargo, this.selectedTipoDocumento, this.selectedEstadoEmpleado,
-      this.selectedGrupoLaboral).subscribe(
+      this.selectedGrupoLaboral, 100).subscribe(
       (response) =>{
         const colaboradores: ColaboradorDto[] = response.data.map((data: any) => new ColaboradorDto(data));
         this.dataSource.data = colaboradores;

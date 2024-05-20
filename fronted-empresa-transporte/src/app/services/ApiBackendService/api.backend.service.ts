@@ -302,7 +302,7 @@ export class ApiBackendService {
 
   busquedaPaginadaPersonal(numeroDocumento: string, nombre:string, apellidoPaterno: string, apellidoMaterno:string ,
                            selectedArea: any, selectedCargo:any, selectedTipoDocumento: any, selectedEstadoEmpleado: any,
-                           selectedGrupoLaboral: any): Observable<any> {
+                           selectedGrupoLaboral: any, max: number): Observable<any> {
     const body = {
       numeroDocumento: Utilidades.esNullOUndefinedoVacio(numeroDocumento) ? null : numeroDocumento,
       nombre: Utilidades.esNullOUndefinedoVacio(nombre) ? null : nombre,
@@ -313,7 +313,7 @@ export class ApiBackendService {
       tipoDocumentoId: Utilidades.esNullOUndefinedoVacio(selectedTipoDocumento) ? null : selectedTipoDocumento,
       estadoEmpleadoId: Utilidades.esNullOUndefinedoVacio(selectedEstadoEmpleado) ? null : selectedEstadoEmpleado,
       grupoLaboralId: Utilidades.esNullOUndefinedoVacio(selectedGrupoLaboral) ? null : selectedGrupoLaboral,
-      max: 10,
+      max: max,
       limite: 0,
     };
     const headers = new HttpHeaders({

@@ -14,6 +14,10 @@
   margin-bottom: 20px;
 }
 
+.card-wrapper1 {
+  flex-basis: calc(99.0% - 20px);
+  margin-bottom: 20px;
+}
 
 .custom-mat-select {
   width: 100%;
@@ -45,7 +49,7 @@
 
 .container-botones-column {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }

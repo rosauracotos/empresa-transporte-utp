@@ -14,66 +14,6 @@
       <form #filtroPersonalForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="card-container">
           <div class="card-wrapper">
-            <mat-form-field class="example-full-width custom-mat-select">
-              <mat-label>Área</mat-label>
-              <mat-select [(ngModel)]="selectedArea" name="area">
-                @for (area of areas; track area) {
-                  <mat-option [value]="area.id">{{area.descripcion}}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="card-wrapper">
-            <mat-form-field class="example-full-width custom-mat-select">
-              <mat-label>Cargo</mat-label>
-              <mat-select [(ngModel)]="selectedCargo" name="cargo">
-                @for (cargo of cargos; track cargo) {
-                  <mat-option [value]="cargo.id">{{cargo.descripcion}}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="card-wrapper">
-            <mat-form-field class="example-full-width custom-mat-select">
-              <mat-label>Estado</mat-label>
-              <mat-select [(ngModel)]="selectedEstadoEmpleado" name="estado">
-                @for (estado of estadosEmpleados; track estado) {
-                  <mat-option [value]="estado.id">{{estado.descripcion}}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="card-container">
-          <div class="card-wrapper">
-            <mat-form-field class="example-full-width custom-mat-select">
-              <mat-label>Tipo Documento</mat-label>
-              <mat-select [(ngModel)]="selectedTipoDocumento" name="tipoDocumento">
-                @for (tipoDocumento of tiposDocumentos; track tipoDocumento) {
-                  <mat-option [value]="tipoDocumento.id">{{tipoDocumento.siglas}}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="card-wrapper">
-            <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
-              <mat-label>Número Documento</mat-label>
-              <input matInput placeholder="Número Documento" [(ngModel)]="numeroDocumento" name="numeroDocumento" type="text" pattern="\d*" maxlength="12">
-            </mat-form-field>
-          </div>
-          <div class="card-wrapper">
-            <mat-form-field class="example-full-width custom-mat-select">
-              <mat-label>Condición Laboral</mat-label>
-              <mat-select [(ngModel)]="selectedGrupoLaboral" name="grupo">
-                @for (grupo of gruposLaborales; track grupo) {
-                  <mat-option [value]="grupo.id">{{grupo.descripcion}}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="card-container">
-          <div class="card-wrapper">
             <mat-form-field appearance="outline" class="example-full-width custom-mat-select">
               <mat-label>Nombre</mat-label>
               <input matInput placeholder="Número Documento" [(ngModel)]="nombre" name="nombre" type="text">
@@ -102,6 +42,29 @@
   <br>
   <div class="card-container">
     <div class="card-wrapper2">
+      <mat-form-field class="custom-mat-select">
+        <mat-label>Ingrese Rango Días</mat-label>
+        <mat-date-range-input [rangePicker]="picker" name="dateRange">
+          <input matStartDate placeholder="Start date" name="startDate" [(ngModel)]="startDate">
+          <input matEndDate placeholder="End date" name="endDate" [(ngModel)]="endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="card-wrapper2">
+      <mat-form-field class="example-full-width custom-mat-select">
+        <mat-label>Turnos</mat-label>
+        <mat-select [(ngModel)]="selectedTurno" name="turno">
+          @for (turno of turnos; track turno) {
+            <mat-option [value]="turno.id">{{turno.abreviatura}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card-wrapper1">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">
@@ -124,31 +87,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div class="card-wrapper2">
-      <div class="container-botones-column">
-        <div>
-          <mat-form-field>
-            <mat-label>Ingrese Rango Días</mat-label>
-            <mat-date-range-input [rangePicker]="picker" name="dateRange">
-              <input matStartDate placeholder="Start date" name="startDate" [(ngModel)]="startDate">
-              <input matEndDate placeholder="End date" name="endDate" [(ngModel)]="endDate">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field class="example-full-width custom-mat-select">
-            <mat-label>Turnos</mat-label>
-            <mat-select [(ngModel)]="selectedTurno" name="turno">
-              @for (turno of turnos; track turno) {
-                <mat-option [value]="turno.id">{{turno.abreviatura}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
+
   </div>
   <br>
   <div>
