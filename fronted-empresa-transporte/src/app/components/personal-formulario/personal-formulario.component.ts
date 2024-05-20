@@ -4,6 +4,7 @@ import {SweetAlertService} from "../../services/SweetAlertService/sweet.alert.se
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../../services/LocalStorageService/local.storage.service";
 import {Utilidades} from "../../../utils/utilidades";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-personal-formulario',
@@ -37,9 +38,12 @@ export class PersonalFormularioComponent {
 
   colaboradorId: any;
 
+  isReadOnly: boolean = false;
+
   constructor(private apiBackendService: ApiBackendService,
               private sweetAlertService: SweetAlertService,
               private localStorageService: LocalStorageService,
+              private route: ActivatedRoute,
               private router: Router) {}
 
   ngOnInit() {
@@ -80,7 +84,10 @@ export class PersonalFormularioComponent {
     console.log(this.colaboradorId);
     if (!Utilidades.esNullOUndefinedoVacio(this.colaboradorId)) {
       this.obtenerDatosColaborador(this.colaboradorId);
-    }
+    };
+    this.route.queryParams.subscribe(params => {
+      this.isReadOnly = params['readOnly'] === 'true'; // Ejemplo de acceso a un parámetro
+    });
   }
 
   obtenerDatosColaborador(colaboradorId: number) {

@@ -7,6 +7,7 @@ import {ColaboradorDto} from "../../models/ColaboradorDto";
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../../services/LocalStorageService/local.storage.service";
 
+
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
@@ -31,12 +32,15 @@ export class PersonalComponent {
   selectedEstadoEmpleado: any;
   selectedGrupoLaboral: any;
 
+  isReadOnly: boolean = false;
+
   constructor(private apiBackendService: ApiBackendService,
               private sweetAlertService: SweetAlertService,
               private localStorageService: LocalStorageService,
               private router: Router) {}
 
   ngOnInit() {
+
     this.apiBackendService.obtenerAreas().subscribe(
       (response) => {
         this.areas = response;
@@ -81,6 +85,7 @@ export class PersonalComponent {
         this.sweetAlertService.showAlertError("Ocurrió un error al conectar al servidor");
       }
     );
+
     this.onSubmit();
   }
 
@@ -115,7 +120,7 @@ export class PersonalComponent {
     console.log(colaborador);
     this.localStorageService.setItem('colaboradorId', colaborador.colaboradorid);
     this.localStorageService.setItem('ocultarBotonGuardar', true);
-    this.router.navigate(['/personal-formulario'])
+    this.router.navigate(['/personal-formulario'], { queryParams: { readOnly: 'true' } })
   }
 
   editarPersonalLaborales(colaborador:ColaboradorDto) {
