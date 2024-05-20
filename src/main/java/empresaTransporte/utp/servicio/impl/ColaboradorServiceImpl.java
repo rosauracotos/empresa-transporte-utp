@@ -87,7 +87,7 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         Colaborador colaboradorDb = findById(colaboradorId);
         colaboradorDb.setActivo(Boolean.FALSE);
         colaboradorRepository.save(colaboradorDb);
-        Usuarios usuario = usuariosRepository.findByLogin(colaboradorDb.getNumeroIdentificacion());
+        Usuarios usuario = usuariosRepository.findByLoginAndActivoTrue(colaboradorDb.getNumeroIdentificacion());
         if (usuario != null) {
             usuario.setActivo(Boolean.FALSE);
             usuariosRepository.save(usuario);
