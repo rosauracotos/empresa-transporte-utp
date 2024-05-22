@@ -132,9 +132,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                     List<ObjetosMenuResponseDTO> listado = obtenerMenuUsuarioLogueado(usuario);
                     LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
                     loginResponseDTO.setNumeroIdentificacionUsuarioLogueado(usuario.getLogin());
-                    if (colaborador != null) {
-                        loginResponseDTO.setNombreUsuarioLogueado(usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno() + " " + usuario.getNombre());
-                    }
+                    loginResponseDTO.setNombreUsuarioLogueado(usuario.getApellidoPaterno() + " " + usuario.getApellidoMaterno() + " " + usuario.getNombre());
                     loginResponseDTO.setDetalle(listado);
                     respuestaControlador = RespuestaControlador.obtenerRespuestaExitoConExtraInfo(loginResponseDTO);
                 } else {
