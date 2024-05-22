@@ -53,8 +53,11 @@ public class BoletasPagoController {
         final String regex = Pattern.quote(dni) + "_" + year + "_(\\d{2})\\.pdf";
 
         File directory = new File(pdfDirectory);
-        if (!directory.exists() || !directory.isDirectory()) {
-            throw new RuntimeException("El directorio de PDF no existe o no es un directorio válido.");
+        if (!directory.exists()) {
+            throw new RuntimeException("El directorio de PDF no existe.");
+        }
+        if (!directory.isDirectory()) {
+            throw new RuntimeException("El directorio no es un directorio válido.");
         }
 
         File[] matchingFiles = directory.listFiles((dir, name) -> name.matches(regex));
